@@ -6,37 +6,38 @@
 <title>Account Generator</title>
 <style>
   :root{
-    --bg: #f2f2f7;
-    --grouped-bg: rgba(255,255,255,0.72);
-    --grouped-border: rgba(255,255,255,0.6);
-    --label: #8e8e93;
-    --text: #000000;
-    --text-secondary: #3c3c43;
-    --separator: rgba(60,60,67,0.13);
-    --blue: #007aff;
-    --green: #34c759;
-    --red: #ff3b30;
-    --orange: #ff9500;
-    --fill: rgba(118,118,128,0.12);
-    --fill-strong: rgba(118,118,128,0.18);
-    --bj88: #ff6b4a;
-    --e2bet: #007aff;
+    --bg: #F3EEE2;
+    --grouped-bg: #FFFFFF;
+    --grouped-border: #17151B;
+    --label: #6b6558;
+    --text: #17151B;
+    --text-secondary: #45403A;
+    --separator: rgba(23,21,27,0.1);
+    --blue: #2D5BFF;
+    --green: #1E8E5A;
+    --red: #E83A1F;
+    --orange: #FF5A36;
+    --yellow: #FFC83D;
+    --fill: #ECE6D6;
+    --fill-strong: #E2DAC4;
+    --bj88: #FF5A36;
+    --e2bet: #2D5BFF;
     --mono: 'SF Mono', ui-monospace, 'Menlo', monospace;
     --sys: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Helvetica Neue', 'Khmer OS Battambang', 'Khmer OS', Roboto, sans-serif;
-    --blur: blur(24px) saturate(180%);
+    --border-w: 2px;
   }
   [data-theme="dark"]{
-    --bg: #000000;
-    --grouped-bg: rgba(28,28,30,0.6);
-    --grouped-border: rgba(255,255,255,0.08);
-    --label: #98989f;
-    --text: #ffffff;
-    --text-secondary: #c7c7cc;
-    --separator: rgba(84,84,88,0.5);
-    --fill: rgba(118,118,128,0.24);
-    --fill-strong: rgba(118,118,128,0.32);
-    --bj88: #ff8a6b;
-    --e2bet: #409cff;
+    --bg: #18161C;
+    --grouped-bg: #221F28;
+    --grouped-border: #F3EEE2;
+    --label: #9b9588;
+    --text: #F3EEE2;
+    --text-secondary: #C9C3B5;
+    --separator: rgba(243,238,226,0.14);
+    --fill: #2C2933;
+    --fill-strong: #38343F;
+    --bj88: #FF7A57;
+    --e2bet: #6E8CFF;
   }
 
   *{ box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -44,14 +45,10 @@
   body{
     margin:0;
     background: var(--bg);
-    background-image:
-      radial-gradient(circle at 15% -10%, rgba(0,122,255,0.10), transparent 45%),
-      radial-gradient(circle at 100% 0%, rgba(255,107,74,0.08), transparent 40%);
-    background-attachment: fixed;
     color: var(--text);
     font-family: var(--sys);
     -webkit-font-smoothing: antialiased;
-    padding: 0 0 24px;
+    padding: 0 0 16px;
     transition: background-color .25s, color .25s;
     min-height: 100vh;
   }
@@ -59,186 +56,202 @@
   .navbar{
     position: sticky; top:0; z-index:10;
     background: var(--bg);
-    -webkit-backdrop-filter: var(--blur); backdrop-filter: var(--blur);
-    opacity: 0.97;
-    padding: calc(10px + env(safe-area-inset-top)) 16px 8px;
+    padding: calc(8px + env(safe-area-inset-top)) 16px 8px;
     display:flex; align-items:center; justify-content:space-between;
-    border-bottom: 1px solid var(--separator);
+    border-bottom: var(--border-w) solid var(--text);
+    gap: 8px;
   }
-  .navbar h1{ font-size: 20px; font-weight: 700; letter-spacing: -0.4px; margin:0; }
+  .navbar-id{ display:flex; align-items:center; gap:9px; }
+  .navbar-mark{ flex-shrink:0; }
+  .navbar h1{
+    font-size: 16px; font-weight: 800; letter-spacing: 0.2px; margin:0;
+    text-transform: uppercase;
+  }
 
   .theme-switch{
-    display:flex; align-items:center; gap:2px;
-    background: var(--fill); border-radius: 20px; padding: 3px;
+    display:flex; align-items:center; gap:0;
+    background: var(--fill); border: var(--border-w) solid var(--text); border-radius: 999px; padding: 2px;
   }
   .theme-switch button{
-    border:none; background:transparent; padding: 6px 11px; border-radius:17px;
-    font-size: 15px; cursor:pointer; color: var(--label); line-height:1;
-    transition: background .2s;
+    border:none; background:transparent; padding: 5px 10px; border-radius:999px;
+    font-size: 14px; cursor:pointer; color: var(--label); line-height:1;
+    transition: background .15s;
   }
-  .theme-switch button.active{ background: var(--grouped-bg); box-shadow: 0 1px 4px rgba(0,0,0,0.18); }
+  .theme-switch button.active{ background: var(--text); }
+  .theme-switch button.active#lightBtn{ background: var(--yellow); }
+  .theme-switch button.active#darkBtn{ background: var(--blue); }
 
   .wrap{ max-width: 480px; margin: 0 auto; padding: 0 14px; }
 
   .section-title{
-    font-size: 12.5px; color: var(--label); text-transform: uppercase;
-    letter-spacing: 0.4px; margin: 18px 8px 6px; font-weight: 600;
+    font-size: 11.5px; color: var(--text); text-transform: uppercase;
+    letter-spacing: 0.6px; margin: 12px 2px 5px; font-weight: 800;
+    display:flex; align-items:center; gap:6px;
   }
-  .section-title:first-of-type{ margin-top: 14px; }
+  .section-title::before{
+    content:''; width: 9px; height: 9px; background: var(--orange); flex-shrink:0;
+    border-radius: 1px;
+  }
+  .section-title:first-of-type{ margin-top: 8px; }
 
   .grouped{
     background: var(--grouped-bg);
-    -webkit-backdrop-filter: var(--blur); backdrop-filter: var(--blur);
-    border-radius: 16px;
+    border-radius: 14px;
     overflow: hidden;
-    border: 1px solid var(--grouped-border);
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 6px 16px rgba(0,0,0,0.04);
+    border: var(--border-w) solid var(--grouped-border);
+    box-shadow: 3px 3px 0 rgba(23,21,27,0.08);
   }
+  [data-theme="dark"] .grouped{ box-shadow: 3px 3px 0 rgba(0,0,0,0.35); }
+
   .row{
-    display:flex; align-items:center; padding: 0 14px;
-    border-bottom: 1px solid var(--separator);
-    min-height: 44px;
+    display:flex; align-items:center; padding: 0 13px;
+    border-bottom: var(--border-w) solid var(--separator);
+    min-height: 40px;
   }
   .row:last-child{ border-bottom: none; }
   .row .row-label{
-    font-size: 15px; color: var(--text); flex-shrink:0; width: 84px;
-    letter-spacing: -0.2px;
+    font-size: 14px; color: var(--text); flex-shrink:0; width: 84px;
+    letter-spacing: -0.1px; font-weight: 700;
   }
   .row input[type=text], .row input[type=tel]{
     flex:1; border:none; background:transparent; color: var(--text);
-    font-size: 15px; padding: 10px 0; font-family: inherit; min-width:0;
-    letter-spacing: -0.2px;
+    font-size: 15px; padding: 7px 0; font-family: inherit; min-width:0;
+    letter-spacing: -0.1px; font-weight: 600;
   }
-  .row input::placeholder{ color: var(--label); }
+  .row input::placeholder{ color: var(--label); font-weight:400; }
   .row input:focus{ outline:none; }
-  .row.detected{ background: rgba(52,199,89,0.06); }
+  .row.detected{ background: rgba(30,142,90,0.08); }
 
-  .qr-row{ flex-direction:column; align-items:stretch; padding: 10px 14px; }
-  .qr-row .row-label{ width:auto; margin-bottom:5px; font-size:12.5px; color:var(--label); }
+  .qr-row{ flex-direction:column; align-items:stretch; padding: 9px 13px; }
+  .qr-row .row-label{ width:auto; margin-bottom:6px; font-size:12px; color:var(--label); font-weight:500; }
   .file-btn{
     display:inline-flex; align-items:center; gap:6px; width:fit-content;
-    background: var(--fill); color: var(--blue); font-size:13px; font-weight:600;
-    padding: 7px 12px; border-radius: 9px; cursor:pointer; border:none;
+    background: var(--yellow); color: var(--text); font-size:13px; font-weight:800;
+    padding: 7px 13px; border-radius: 999px; cursor:pointer; border: var(--border-w) solid var(--text);
   }
   .file-btn input[type=file]{ display:none; }
 
   /* segmented control for site */
   .segment{
-    display:flex; background: var(--fill); border-radius: 10px; padding: 2px; margin: 8px 4px 4px;
+    display:flex; background: var(--fill); border-radius: 10px; padding: 3px; margin: 9px 9px 5px;
+    border: var(--border-w) solid var(--text);
   }
   .segment button{
-    flex:1; border:none; background:transparent; padding: 8px 0; border-radius:8px;
-    font-size: 13.5px; font-weight: 600; cursor:pointer; color: var(--text-secondary);
-    transition: background .15s;
+    flex:1; border:none; background:transparent; padding: 8px 0; border-radius:7px;
+    font-size: 13px; font-weight: 800; cursor:pointer; color: var(--text-secondary);
+    transition: background .15s, color .15s; letter-spacing: 0.2px;
   }
-  .segment button.active{ background: var(--grouped-bg); box-shadow: 0 1px 3px rgba(0,0,0,0.15); }
-  .segment button.active[data-site="bj88"]{ color: var(--bj88); }
-  .segment button.active[data-site="e2bet"]{ color: var(--e2bet); }
+  .segment button.active{ box-shadow: none; color: #fff; }
+  .segment button.active[data-site="bj88"]{ background: var(--bj88); }
+  .segment button.active[data-site="e2bet"]{ background: var(--e2bet); }
+  .segment button.active[data-lang]{ background: var(--text); color: var(--bg); }
 
   /* username chips */
-  .chip-row{ display:flex; gap:7px; padding: 10px 14px; flex-wrap: wrap; }
+  .chip-row{ display:flex; gap:7px; padding: 9px 13px; flex-wrap: wrap; }
   .chip{
-    flex:1; min-width: 86px; text-align:center; padding: 9px 6px; border-radius: 10px;
-    background: var(--fill); font-family: var(--mono); font-size: 13px; font-weight:600;
-    color: var(--text-secondary); cursor:pointer; border: 1.5px solid transparent;
+    flex:1; min-width: 86px; text-align:center; padding: 8px 6px; border-radius: 9px;
+    background: var(--fill); font-family: var(--mono); font-size: 12.5px; font-weight:800;
+    color: var(--text-secondary); cursor:pointer; border: var(--border-w) solid transparent;
     transition: transform .1s;
   }
+  .chip:nth-child(3n+1){ background: rgba(255,90,54,0.13); }
+  .chip:nth-child(3n+2){ background: rgba(255,200,61,0.22); }
+  .chip:nth-child(3n+3){ background: rgba(45,91,255,0.12); }
   .chip:active{ transform: scale(0.96); }
-  .chip.picked{ border-color: var(--blue); color: var(--blue); background: rgba(0,122,255,0.1); }
-  [data-theme="dark"] .chip.picked{ background: rgba(64,156,255,0.16); }
-  .chip-empty{ padding: 9px 14px; color: var(--label); font-size: 13px; }
+  .chip.picked{ border-color: var(--text); color: var(--text); background: var(--yellow) !important; }
+  .chip-empty{ padding: 8px 13px; color: var(--label); font-size: 12.5px; }
 
   /* output cards */
   .output-card{
     background: var(--grouped-bg);
-    -webkit-backdrop-filter: var(--blur); backdrop-filter: var(--blur);
-    border: 1px solid var(--grouped-border);
-    border-radius: 16px; padding: 4px 14px;
-    margin-bottom: 10px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 6px 16px rgba(0,0,0,0.04);
+    border: var(--border-w) solid var(--grouped-border);
+    border-radius: 14px; padding: 2px 13px;
+    margin-bottom: 8px;
+    box-shadow: 3px 3px 0 rgba(23,21,27,0.08);
   }
+  [data-theme="dark"] .output-card{ box-shadow: 3px 3px 0 rgba(0,0,0,0.35); }
   .output-line{
     display:flex; align-items:center; justify-content:space-between;
-    padding: 11px 0; border-bottom: 1px solid var(--separator); gap: 10px;
-    cursor: pointer; border-radius: 10px; margin: 0 -8px; padding-left:8px; padding-right:8px;
+    padding: 9px 0; border-bottom: var(--border-w) solid var(--separator); gap: 10px;
+    cursor: pointer; border-radius: 9px; margin: 0 -7px; padding-left:7px; padding-right:7px;
     transition: background .12s;
     -webkit-user-select: none; user-select: none;
   }
   .output-line:active{ background: var(--fill); }
   .output-line:last-child{ border-bottom: none; }
   .output-text{
-    font-family: var(--mono); font-size: 14.5px; color: var(--text);
+    font-family: var(--mono); font-size: 14.5px; color: var(--text); font-weight:700;
     word-break: break-all; min-width:0;
   }
-  .output-sub{ font-size: 11px; color: var(--label); margin-bottom: 2px; font-weight:500; }
+  .output-sub{ font-size: 10.5px; color: var(--label); margin-bottom: 2px; font-weight:700; text-transform: uppercase; letter-spacing:0.3px; }
 
   .copy-icon-btn{
-    flex-shrink:0; width: 30px; height: 30px; border-radius: 9px; border:none;
-    background: var(--fill); color: var(--blue); cursor:pointer;
+    flex-shrink:0; width: 30px; height: 30px; border-radius: 8px; border: var(--border-w) solid var(--text);
+    background: var(--yellow); color: var(--text); cursor:pointer;
     display:flex; align-items:center; justify-content:center;
     transition: background .15s, color .15s, transform .1s;
     pointer-events: none; /* whole row handles the tap now */
   }
-  .copy-icon-btn.copied{ background: rgba(52,199,89,0.18); color: var(--green); }
+  .copy-icon-btn.copied{ background: var(--green); color:#fff; border-color: var(--green); }
 
   .password-input{
-    flex:1; min-width:0; border:none; background: var(--fill); border-radius:9px;
-    padding: 9px 10px; font-family: var(--mono); font-size: 14.5px; color: var(--text);
+    flex:1; min-width:0; border: var(--border-w) solid var(--text); background: var(--fill); border-radius:8px;
+    padding: 8px 10px; font-family: var(--mono); font-size: 14.5px; color: var(--text); font-weight:700;
   }
-  .password-input:focus{ outline: 1.5px solid var(--blue); }
-  .password-input:disabled{ opacity: 0.75; }
+  .password-input:focus{ outline: none; background: var(--grouped-bg); }
+  .password-input:disabled{ opacity: 0.65; }
 
   .lock-toggle-btn{
-    flex-shrink:0; width: 30px; height: 30px; border-radius: 9px; border:none;
+    flex-shrink:0; width: 30px; height: 30px; border-radius: 8px; border: var(--border-w) solid var(--text);
     background: var(--fill); color: var(--label); cursor:pointer;
     display:flex; align-items:center; justify-content:center;
     transition: background .15s, color .15s, transform .1s;
   }
   .lock-toggle-btn:active{ transform: scale(0.92); }
-  .lock-toggle-btn.locked{ background: rgba(255,149,0,0.18); color: var(--orange); }
+  .lock-toggle-btn.locked{ background: var(--orange); color: #fff; border-color: var(--orange); }
 
   .suggest-row{ display:flex; gap:6px; margin-top: 8px; flex-wrap: wrap; }
   .suggest-chip{
-    padding: 5px 10px; border-radius: 8px; background: var(--fill);
-    font-family: var(--mono); font-size: 12px; color: var(--text-secondary);
-    cursor:pointer; border: none;
+    padding: 5px 10px; border-radius: 7px; background: var(--fill); border: 1.5px solid var(--separator);
+    font-family: var(--mono); font-size: 11.5px; color: var(--text-secondary); font-weight:700;
+    cursor:pointer;
   }
   .suggest-chip:active{ transform: scale(0.96); }
 
   .msg-block{
-    font-family: var(--sys); font-size: 14.5px; color: var(--text);
-    background: var(--fill); border-radius: 11px; padding: 12px; line-height: 1.6;
-    white-space: pre-wrap; margin: 10px 0; cursor: pointer;
+    font-family: var(--sys); font-size: 14.5px; color: var(--text); font-weight:500;
+    background: var(--fill); border-radius: 10px; padding: 11px 12px; line-height: 1.55;
+    white-space: pre-wrap; margin: 9px 0; cursor: pointer;
     -webkit-user-select: none; user-select: none;
-    transition: background .12s;
+    transition: background .12s; border: 1.5px dashed var(--separator);
   }
   .msg-block:active{ background: var(--fill-strong); }
   .msg-tag{
-    font-family: var(--mono); font-weight: 700; font-size: 0.92em;
-    color: var(--blue); background: rgba(0,122,255,0.1);
-    padding: 1px 6px; border-radius: 6px; letter-spacing: 0.2px;
+    font-family: var(--mono); font-weight: 800; font-size: 0.92em;
+    color: var(--text); background: var(--yellow);
+    padding: 1px 6px; border-radius: 5px; letter-spacing: 0.2px;
     white-space: nowrap;
   }
   .copy-full-btn{
-    width:100%; padding: 11px; border-radius: 11px; border:none;
-    background: var(--blue); color: white; font-size: 15px; font-weight: 600; cursor:pointer;
-    margin-bottom: 10px; letter-spacing: -0.2px;
+    width:100%; padding: 11px; border-radius: 10px; border: var(--border-w) solid var(--text);
+    background: var(--text); color: var(--bg); font-size: 14.5px; font-weight: 800; cursor:pointer;
+    margin-bottom: 9px; letter-spacing: 0.2px; text-transform: uppercase;
   }
-  .copy-full-btn.copied{ background: var(--green); }
+  .copy-full-btn.copied{ background: var(--green); border-color: var(--green); color:#fff; }
 
   .clear-btn{
-    width:100%; text-align:center; padding: 12px; margin-top: 6px;
-    background:transparent; border:none; color: var(--red); font-size: 15px; cursor:pointer; font-weight:500;
+    width:100%; text-align:center; padding: 9px; margin-top: 4px;
+    background:transparent; border: var(--border-w) solid var(--red); border-radius: 10px;
+    color: var(--red); font-size: 14px; cursor:pointer; font-weight:800; text-transform: uppercase; letter-spacing:0.3px;
   }
 
   .hidden{ display:none; }
 
   .toast{
     position: fixed; left: 50%; bottom: 28px; transform: translateX(-50%) translateY(20px);
-    background: rgba(28,28,30,0.92); color: #fff; padding: 10px 18px; border-radius: 14px;
-    font-size: 14px; font-weight: 600; opacity: 0; pointer-events: none;
-    -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
-    transition: opacity .2s, transform .2s; z-index: 50;
+    background: var(--text); color: var(--bg); padding: 10px 18px; border-radius: 10px;
+    font-size: 14px; font-weight: 800; opacity: 0; pointer-events: none;
+    transition: opacity .2s, transform .2s; z-index: 50; text-transform: uppercase; letter-spacing:0.3px;
   }
   .toast.show{ opacity: 1; transform: translateX(-50%) translateY(0); }
 </style>
@@ -246,7 +259,14 @@
 <body data-theme="light">
 
 <div class="navbar">
-  <h1>Account Generator</h1>
+  <div class="navbar-id">
+    <svg class="navbar-mark" width="26" height="26" viewBox="0 0 26 26">
+      <circle cx="13" cy="13" r="12" fill="var(--yellow)" stroke="var(--text)" stroke-width="2"/>
+      <path d="M13 1 A12 12 0 0 1 13 25 Z" fill="var(--orange)" stroke="var(--text)" stroke-width="2"/>
+      <circle cx="13" cy="13" r="4" fill="var(--blue)" stroke="var(--text)" stroke-width="1.5"/>
+    </svg>
+    <h1>Account Gen</h1>
+  </div>
   <div class="theme-switch">
     <button id="lightBtn" class="active" onclick="setTheme('light')">☀️</button>
     <button id="darkBtn" onclick="setTheme('dark')">🌙</button>
@@ -276,21 +296,17 @@
         Choose photo
         <input type="file" id="qrImage" accept="image/*">
       </label>
-      <div id="qrPasteZone" tabindex="0" style="margin-top:8px; border:1.5px dashed var(--separator); border-radius:10px; padding:10px; text-align:center; font-size:12px; color:var(--label); cursor:text;">ចុចទីនេះ ហើយ Ctrl+V / Cmd+V ដើម្បីបិទភ្ជាប់រូបភាព (click here, then paste image)</div>
-      <div id="qrStatus" style="font-size:12.5px; color:var(--label); margin-top:8px;"></div>
+      <div id="qrPasteZone" tabindex="0" style="margin-top:6px; border:1.5px dashed var(--separator); border-radius:9px; padding:7px; text-align:center; font-size:11px; color:var(--label); cursor:text;">ឬ ចុចទីនេះ ហើយ Paste រូបភាព (Ctrl/Cmd+V)</div>
+      <div id="qrStatus" style="font-size:12px; color:var(--label); margin-top:5px;"></div>
     </div>
   </div>
 
-  <div class="section-title">Site</div>
-  <div class="grouped" style="padding-bottom:2px;">
-    <div class="segment">
+  <div class="section-title">Site &amp; Username</div>
+  <div class="grouped">
+    <div class="segment" style="margin-top:6px;">
       <button class="active" data-site="bj88" onclick="selectSite('bj88')">BJ88</button>
       <button data-site="e2bet" onclick="selectSite('e2bet')">E2BET</button>
     </div>
-  </div>
-
-  <div class="section-title">Username</div>
-  <div class="grouped">
     <div class="chip-row" id="usernameChips">
       <div class="chip-empty">fill name + phone first</div>
     </div>
@@ -298,7 +314,7 @@
 
   <div id="resultsArea">
 
-    <div class="section-title">លទ្ធផល (Result) — tap any row to copy</div>
+    <div class="section-title">លទ្ធផល — ចុចដើម្បីចម្លង (tap to copy)</div>
     <div class="output-card">
       <div class="output-line" onclick="copyRow('outUsername', this)">
         <div>
@@ -327,7 +343,7 @@
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
         </button>
       </div>
-      <div class="output-line" style="align-items:flex-start; padding-top:11px; cursor:default;" id="passwordLine">
+      <div class="output-line" style="align-items:flex-start; padding-top:8px; cursor:default;" id="passwordLine">
         <div style="flex:1; min-width:0;">
           <div class="output-sub">ពាក្យសម្ងាត់ (Password)</div>
           <div style="display:flex; align-items:center; gap:8px;">
@@ -376,7 +392,7 @@
 
   </div>
 
-  <button class="clear-btn" onclick="clearAll()">Clear</button>
+  <button class="clear-btn" onclick="clearAll()">Clear All</button>
 
 </div>
 
@@ -883,4 +899,5 @@ renderUsernameChips();
 </script>
 </body>
 </html>
+
 
