@@ -294,7 +294,7 @@
     </div>
     <div class="row" id="bankRow">
       <span class="row-label">Bank No.</span>
-      <input type="text" id="custBankNumber" placeholder="auto-detected from image" autocomplete="off" inputmode="numeric">
+      <input type="text" id="custBankNumber" placeholder="e.g. 9917***828" autocomplete="off">
     </div>
     <div class="row qr-row">
       <span class="row-label">Upload or paste QR / bank screenshot (auto-detect name + number)</span>
@@ -547,18 +547,24 @@ function detectNameFromQR(text){
 
 function detectBankNumberFromText(text){
   if(!text) return '';
-  // grab all digit runs (allowing spaces/dashes inside, common on bank slips/QR)
+  // grab digit runs, allowing spaces/dashes inside, plus masked digits shown
+  // as asterisks/dots on bank slips (e.g. "9917***828" or "9917•••828")
   const candidates = [];
-  const matches = text.match(/\d[\d \-]{6,22}\d/g) || [];
+  const matches = text.match(/[\d*xX•][\d \-*xX•]{6,22}[\d*xX•]/g) || [];
   for(const m of matches){
-    const digits = m.replace(/\D/g,'');
-    if(digits.length >= 8 && digits.length <= 19){
-      candidates.push(digits);
+    const cleaned = m.replace(/[ \-]/g,'').replace(/[xX•]/g,'*');
+    const digitCount = (cleaned.match(/\d/g)||[]).length;
+    const maskCount = (cleaned.match(/\*/g)||[]).length;
+    const total = cleaned.length;
+    // require at least 8 total chars, a real mix of digits, and not mostly stars
+    if(total >= 8 && total <= 19 && digitCount >= 4 && maskCount <= digitCount){
+      candidates.push(cleaned);
     }
   }
   if(candidates.length === 0) return '';
-  // prefer the longest candidate (account numbers are usually longer than phone numbers)
-  candidates.sort((a,b)=> b.length - a.length);
+  // prefer the longest candidate (account numbers are usually longer than phone numbers);
+  // among ties, prefer ones with fewer masked characters (more complete reads)
+  candidates.sort((a,b)=> (b.length - a.length) || ((a.match(/\*/g)||[]).length - (b.match(/\*/g)||[]).length));
   return candidates[0];
 }
 
@@ -1000,6 +1006,3 @@ renderUsernameChips();
 </script>
 </body>
 </html>
-
-
-
