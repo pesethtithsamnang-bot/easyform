@@ -349,16 +349,74 @@ function lastWordKey(name){
 
 function detectNameFromQR(text){
   if(!text) return '';
-  const bankWords = ['ABA','ACLEDA','WING','BANK','PAY','PHNOM','PENH','COMMERCIAL','KHMER','TRANSFER','QR','MERCHANT','KHQR'];
-  const lines = text.split(/[\n,|]/).map(l=>l.trim()).filter(Boolean);
-  for(const line of lines){
-    const cleaned = line.replace(/[^A-Za-z\s]/g,'').trim();
-    if(cleaned.length < 3) continue;
-    const words = cleaned.split(/\s+/);
-    if(words.some(w => bankWords.includes(w.toUpperCase()))) continue;
-    if(/^[A-Za-z\s]+$/.test(cleaned) && words.length <= 4) return cleaned;
+
+  // Words that show up as UI/app/bank noise on Cambodian bank & QR screenshots
+  // (ABA, ACLEDA, Wing, Bakong, KHQR, Canadia, Vattanac, Prince, Cambodia Post, etc.)
+  // plus generic transaction wording in English. Khmer script is handled separately
+  // since Tesseract (eng) mostly drops it, leaving gaps/blank lines around it.
+  const noiseWords = [
+    'ABA','ACLEDA','WING','BAKONG','KHQR','QR','BANK','PAY','PI','PIPAY','TRUE',
+    'MONEY','CANADIA','VATTANAC','PRINCE','SATHAPANA','PRASAC','HATTHA','AMK',
+    'CHIPMONG','CAMBODIA','POST','PHNOM','PENH','COMMERCIAL','PUBLIC','FOREIGN',
+    'KHMER','CAMBODIAN','UNION','MAYBANK','CIMB','SBI','RHB','UOB','VISA',
+    'MASTERCARD','MERCHANT','TRANSFER','TRANSACTION','SUCCESSFUL','SUCCESS',
+    'COMPLETED','APPROVED','PENDING','FAILED','AMOUNT','TOTAL','FEE','CURRENCY',
+    'RECEIVER','RECEIVED','SENDER','SEND','FROM','REFERENCE','REF','NO','ID',
+    'DATE','TIME','ACCOUNT','NUMBER','BALANCE','REMARK','NOTE','DESCRIPTION',
+    'PURPOSE','TYPE','STATUS','MOBILE','APP','SCAN','SCANNED','CODE','PAYMENT',
+    'PAID','RECEIPT','SLIP','DETAIL','DETAILS','INFO','SAVE','SHARE','DONE',
+    'CONFIRM','CONFIRMED','USD','KHR','RIEL','DOLLAR'
+  ];
+
+  // Split into lines, normalize whitespace
+  const rawLines = text.split(/\n+/).map(l => l.trim()).filter(Boolean);
+  const titleWords = ['MR','MRS','MS','MISS','MDM','DR'];
+
+  let best = '';
+  let bestScore = 0;
+
+  for(let line of rawLines){
+    // Strip anything that isn't a letter or space (drops digits, symbols, currency, colons)
+    let cleaned = line.replace(/[^A-Za-z\s]/g, ' ').replace(/\s+/g, ' ').trim();
+    if(!cleaned || cleaned.length < 3) continue;
+
+    let words = cleaned.split(' ').filter(Boolean);
+    // Drop a leading title (Mr/Mrs/Ms/Dr...) since it's not part of the name itself
+    if(words.length > 1 && titleWords.includes(words[0].toUpperCase().replace(/\.$/,''))){
+      words = words.slice(1);
+    }
+    if(words.length === 0 || words.length > 5) continue;
+
+    // Skip lines that are entirely or mostly noise/UI words
+    const upperWords = words.map(w => w.toUpperCase());
+    const noiseCount = upperWords.filter(w => noiseWords.includes(w)).length;
+    if(noiseCount > 0) continue; // any noise word disqualifies the line entirely
+    if(words.some(w => w.length === 1)) continue; // stray single letters from OCR noise
+
+    // Require every word to look name-like: starts with a capital letter
+    // (catches both "ALL CAPS" and "Title Case" styles used on real receipts,
+    // while rejecting generic lowercase junk/garbage lines)
+    if(!words.every(w => /^[A-Z]/.test(w))) continue;
+
+    // Score the line on how "name-like" it looks
+    let score = 0;
+    score += Math.min(words.length, 3) * 2; // 1-3 words is the sweet spot for names
+    if(words.length >= 2 && words.length <= 3) score += 3;
+    // Slight penalty for very long single words (likely OCR garbage, not a name)
+    if(words.length === 1 && words[0].length > 12) score -= 3;
+    // Bonus for plausible average word length (names are rarely 1-2 chars)
+    const avgLen = words.reduce((a,w)=>a+w.length,0) / words.length;
+    if(avgLen >= 3 && avgLen <= 10) score += 2;
+
+    if(score > bestScore){
+      bestScore = score;
+      best = words.join(' ');
+    }
   }
-  return '';
+
+  // Require a minimum confidence so we don't return garbage
+  if(bestScore < 4) return '';
+  return best;
 }
 
 function buildUsernameSuggestions(name, phone){
@@ -420,7 +478,7 @@ function renderAll(){
   document.getElementById('outLink').textContent = site.link;
 
   document.getElementById('customerMsg').textContent =
-`សួស្តីបង នេះជា Account របស់បងអាចព្យាយាម Login បាន
+`សួស្តីបង នេះជា Account របស់បងអាចព្យាយាម Login បានហើយ
 
 គណនី : ${pickedUsername || '—'}
 ពាក្យសម្ងាត់ : ${currentPassword}
