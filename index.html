@@ -251,6 +251,15 @@
       </div>
       <div class="output-line">
         <div>
+          <div class="output-sub">Phone</div>
+          <div class="output-text" id="outPhone">—</div>
+        </div>
+        <button class="copy-icon-btn" onclick="copyOne('outPhone', this)" aria-label="Copy phone">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+        </button>
+      </div>
+      <div class="output-line">
+        <div>
           <div class="output-sub">Gmail</div>
           <div class="output-text" id="outGmail">—</div>
         </div>
@@ -469,16 +478,18 @@ function renderAll(){
   const site = SITES[selectedSite];
   document.getElementById('resultsArea').classList.remove('hidden');
 
-  const gmailLocal = nameKeyNoSpace(name) + cleanPhone(document.getElementById('custPhone').value).slice(-3);
+  const phoneDigits = cleanPhone(document.getElementById('custPhone').value);
+  const gmailLocal = nameKeyNoSpace(name) + phoneDigits.slice(-3);
   const gmail = (pickedUsername && name) ? (gmailLocal + site.suffix) : '—';
   const currentPassword = document.getElementById('passwordInput').value || 'ab1234';
 
   document.getElementById('outUsername').textContent = pickedUsername || '—';
+  document.getElementById('outPhone').textContent = phoneDigits || '—';
   document.getElementById('outGmail').textContent = gmail;
   document.getElementById('outLink').textContent = site.link;
 
   document.getElementById('customerMsg').textContent =
-`សួស្តីបង នេះជា Account របស់បងអាចព្យាយាម Login បាន
+`សួស្តីបង នេះជា Account របស់បងអាចព្យាយាម Login បានហើយ
 
 គណនី : ${pickedUsername || '—'}
 ពាក្យសម្ងាត់ : ${currentPassword}
