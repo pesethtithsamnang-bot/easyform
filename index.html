@@ -40,6 +40,86 @@
     --e2bet: #6E8CFF;
   }
 
+  /* Relax — soft lavender & cream, low-contrast and easy on tired eyes */
+  [data-theme="relax"]{
+    --bg: #F1ECF7;
+    --grouped-bg: #FDFBFE;
+    --grouped-border: #4A3F5C;
+    --label: #8D81A0;
+    --text: #3A3050;
+    --text-secondary: #5C5070;
+    --separator: rgba(74,63,92,0.12);
+    --blue: #7B6FE0;
+    --green: #5BAE8C;
+    --red: #E0708A;
+    --orange: #C99BE0;
+    --yellow: #F4C9E0;
+    --fill: #EBE2F5;
+    --fill-strong: #DFD2F0;
+    --bj88: #E0708A;
+    --e2bet: #7B6FE0;
+  }
+
+  /* Sea — turquoise & sand, bright coastal feel */
+  [data-theme="sea"]{
+    --bg: #E7F6F4;
+    --grouped-bg: #FFFFFF;
+    --grouped-border: #0E5C63;
+    --label: #5B8A8C;
+    --text: #0E3D40;
+    --text-secondary: #1F5A5E;
+    --separator: rgba(14,92,99,0.12);
+    --blue: #1AA6B7;
+    --green: #2FA88A;
+    --red: #E8623F;
+    --orange: #2FBFB0;
+    --yellow: #FFD874;
+    --fill: #D7EFEC;
+    --fill-strong: #C2E5E0;
+    --bj88: #E8623F;
+    --e2bet: #1AA6B7;
+  }
+
+  /* Ocean — deep navy & teal, darker and moodier than Sea */
+  [data-theme="ocean"]{
+    --bg: #0B2230;
+    --grouped-bg: #123244;
+    --grouped-border: #BFE6EE;
+    --label: #7FA8B8;
+    --text: #E7F4F8;
+    --text-secondary: #BFE0E8;
+    --separator: rgba(191,230,238,0.16);
+    --blue: #4FB8E0;
+    --green: #38C29A;
+    --red: #FF6B5C;
+    --orange: #3FCFD8;
+    --yellow: #FFD166;
+    --fill: #1A4456;
+    --fill-strong: #235A70;
+    --bj88: #FF8A6B;
+    --e2bet: #4FB8E0;
+  }
+
+  /* Tree — warm forest greens & bark, grounded and natural */
+  [data-theme="tree"]{
+    --bg: #EFEBDD;
+    --grouped-bg: #FBFAF3;
+    --grouped-border: #3B3022;
+    --label: #74684E;
+    --text: #2F2A1C;
+    --text-secondary: #4F4630;
+    --separator: rgba(59,48,34,0.12);
+    --blue: #3E7C5A;
+    --green: #4C8C4A;
+    --red: #C75B39;
+    --orange: #C9A23C;
+    --yellow: #E0C24E;
+    --fill: #E1DCC4;
+    --fill-strong: #D3CCAA;
+    --bj88: #C75B39;
+    --e2bet: #3E7C5A;
+  }
+
   *{ box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
   html{ -webkit-text-size-adjust: 100%; }
   body{
@@ -56,43 +136,43 @@
   .navbar{
     position: sticky; top:0; z-index:10;
     background: var(--bg);
-    padding: calc(8px + env(safe-area-inset-top)) 16px 8px;
+    padding: calc(6px + env(safe-area-inset-top)) 14px 6px;
     display:flex; align-items:center; justify-content:space-between;
     border-bottom: var(--border-w) solid var(--text);
     gap: 8px;
   }
-  .navbar-id{ display:flex; align-items:center; gap:9px; }
+  .navbar-id{ display:flex; align-items:center; gap:7px; }
   .navbar-mark{ flex-shrink:0; }
   .navbar h1{
-    font-size: 16px; font-weight: 800; letter-spacing: 0.2px; margin:0;
+    font-size: 14px; font-weight: 800; letter-spacing: 0.2px; margin:0;
     text-transform: uppercase;
   }
 
   .theme-switch{
-    display:flex; align-items:center; gap:0;
-    background: var(--fill); border: var(--border-w) solid var(--text); border-radius: 999px; padding: 2px;
+    display:flex; align-items:center; gap:2px;
+    background: var(--fill); border: var(--border-w) solid var(--text); border-radius: 999px; padding: 3px;
+    flex-shrink:0;
   }
   .theme-switch button{
-    border:none; background:transparent; padding: 5px 10px; border-radius:999px;
-    font-size: 14px; cursor:pointer; color: var(--label); line-height:1;
-    transition: background .15s;
+    border: 1.5px solid transparent; background:transparent; width:21px; height:21px; padding:0; border-radius:999px;
+    font-size: 11px; cursor:pointer; color: var(--label); line-height:1;
+    display:flex; align-items:center; justify-content:center;
+    transition: transform .12s, border-color .12s;
   }
-  .theme-switch button.active{ background: var(--text); }
-  .theme-switch button.active#lightBtn{ background: var(--yellow); }
-  .theme-switch button.active#darkBtn{ background: var(--blue); }
+  .theme-switch button.active{ border-color: var(--text); transform: scale(1.12); }
 
   .wrap{ max-width: 480px; margin: 0 auto; padding: 0 14px; }
 
   .section-title{
-    font-size: 11.5px; color: var(--text); text-transform: uppercase;
-    letter-spacing: 0.6px; margin: 12px 2px 5px; font-weight: 800;
+    font-size: 11px; color: var(--text); text-transform: uppercase;
+    letter-spacing: 0.6px; margin: 8px 2px 4px; font-weight: 800;
     display:flex; align-items:center; gap:6px;
   }
   .section-title::before{
-    content:''; width: 9px; height: 9px; background: var(--orange); flex-shrink:0;
+    content:''; width: 8px; height: 8px; background: var(--orange); flex-shrink:0;
     border-radius: 1px;
   }
-  .section-title:first-of-type{ margin-top: 8px; }
+  .section-title:first-of-type{ margin-top: 6px; }
 
   .grouped{
     background: var(--grouped-bg);
@@ -106,7 +186,7 @@
   .row{
     display:flex; align-items:center; padding: 0 13px;
     border-bottom: var(--border-w) solid var(--separator);
-    min-height: 40px;
+    min-height: 36px;
   }
   .row:last-child{ border-bottom: none; }
   .row .row-label{
@@ -122,7 +202,7 @@
   .row input:focus{ outline:none; }
   .row.detected{ background: rgba(30,142,90,0.08); }
 
-  .qr-row{ flex-direction:column; align-items:stretch; padding: 9px 13px; }
+  .qr-row{ flex-direction:column; align-items:stretch; padding: 7px 13px; }
   .qr-row .row-label{ width:auto; margin-bottom:6px; font-size:12px; color:var(--label); font-weight:500; }
   .file-btn{
     display:inline-flex; align-items:center; gap:6px; width:fit-content;
@@ -144,10 +224,34 @@
   .segment button.active{ box-shadow: none; color: #fff; }
   .segment button.active[data-site="bj88"]{ background: var(--bj88); }
   .segment button.active[data-site="e2bet"]{ background: var(--e2bet); }
-  .segment button.active[data-lang]{ background: var(--text); color: var(--bg); }
+  .segment button:disabled{ opacity: 0.6; cursor: not-allowed; }
+
+  /* OCR language toggle — visually distinct pill with a sliding thumb,
+     so it never reads as "the same control" as the BJ88/E2BET segment above it */
+  .lang-toggle{
+    position: relative;
+    display:flex; background: var(--fill-strong); border-radius: 999px; padding: 4px;
+    margin: 0 0 9px; border: var(--border-w) dashed var(--separator);
+    overflow: hidden;
+  }
+  .lang-toggle .lang-thumb{
+    position:absolute; top:4px; left:4px; height: calc(100% - 8px); width: calc(50% - 4px);
+    background: var(--blue); border-radius: 999px;
+    transition: transform .28s cubic-bezier(.4,0,.2,1), background .2s;
+    z-index: 0;
+  }
+  .lang-toggle[data-active="eng"] .lang-thumb{ transform: translateX(100%); background: var(--orange); }
+  .lang-toggle button{
+    position: relative; z-index: 1; flex:1; border:none; background:transparent;
+    padding: 8px 0; border-radius:999px; font-size: 12.5px; font-weight: 800;
+    cursor:pointer; color: var(--text-secondary); letter-spacing: 0.3px;
+    transition: color .2s; display:flex; align-items:center; justify-content:center; gap:5px;
+  }
+  .lang-toggle button.active{ color: #fff; }
+  .lang-toggle button:active{ transform: scale(0.97); }
 
   /* username chips */
-  .chip-row{ display:flex; gap:7px; padding: 9px 13px; flex-wrap: wrap; }
+  .chip-row{ display:flex; gap:6px; padding: 7px 13px; flex-wrap: wrap; }
   .chip{
     flex:1; min-width: 86px; text-align:center; padding: 8px 6px; border-radius: 9px;
     background: var(--fill); font-family: var(--mono); font-size: 12.5px; font-weight:800;
@@ -165,14 +269,14 @@
   .output-card{
     background: var(--grouped-bg);
     border: var(--border-w) solid var(--grouped-border);
-    border-radius: 14px; padding: 2px 13px;
-    margin-bottom: 8px;
+    border-radius: 14px; padding: 1px 13px;
+    margin-bottom: 6px;
     box-shadow: 3px 3px 0 rgba(23,21,27,0.08);
   }
   [data-theme="dark"] .output-card{ box-shadow: 3px 3px 0 rgba(0,0,0,0.35); }
   .output-line{
     display:flex; align-items:center; justify-content:space-between;
-    padding: 9px 0; border-bottom: var(--border-w) solid var(--separator); gap: 10px;
+    padding: 7px 0; border-bottom: var(--border-w) solid var(--separator); gap: 10px;
     cursor: pointer; border-radius: 9px; margin: 0 -7px; padding-left:7px; padding-right:7px;
     transition: background .12s;
     -webkit-user-select: none; user-select: none;
@@ -274,9 +378,13 @@
     </svg>
     <h1>Account Gen</h1>
   </div>
-  <div class="theme-switch">
-    <button id="lightBtn" class="active" onclick="setTheme('light')">☀️</button>
-    <button id="darkBtn" onclick="setTheme('dark')">🌙</button>
+  <div class="theme-switch" id="themeSwitch">
+    <button data-theme-btn="light" onclick="setTheme('light')" title="Light" style="background:#F3EEE2;">☀️</button>
+    <button data-theme-btn="dark" onclick="setTheme('dark')" title="Dark" style="background:#18161C;">🌙</button>
+    <button data-theme-btn="relax" onclick="setTheme('relax')" title="Relax" style="background:#EBE2F5;">🌸</button>
+    <button data-theme-btn="sea" onclick="setTheme('sea')" title="Sea" style="background:#D7EFEC;">🌊</button>
+    <button data-theme-btn="ocean" onclick="setTheme('ocean')" title="Ocean" style="background:#123244;">🐋</button>
+    <button data-theme-btn="tree" onclick="setTheme('tree')" title="Tree" style="background:#E1DCC4;">🌳</button>
   </div>
 </div>
 
@@ -298,9 +406,10 @@
     </div>
     <div class="row qr-row">
       <span class="row-label">Upload or paste QR / bank screenshot (auto-detect name + number)</span>
-      <div class="segment" style="margin:0 0 8px;">
-        <button class="active" data-ocrlang="khm" onclick="selectOcrLang('khm')">ខ្មែរ</button>
-        <button data-ocrlang="eng" onclick="selectOcrLang('eng')">English</button>
+      <div class="lang-toggle" id="ocrLangToggle" data-active="eng">
+        <div class="lang-thumb"></div>
+        <button data-ocrlang="khm" onclick="selectOcrLang('khm')">🇰🇭 ខ្មែរ</button>
+        <button class="active" data-ocrlang="eng" onclick="selectOcrLang('eng')">🇬🇧 English</button>
       </div>
       <label class="file-btn">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
@@ -317,9 +426,15 @@
 
   <div class="section-title">Site &amp; Username</div>
   <div class="grouped">
-    <div class="segment" style="margin-top:6px;">
-      <button class="active" data-site="bj88" onclick="selectSite('bj88')">BJ88</button>
-      <button data-site="e2bet" onclick="selectSite('e2bet')">E2BET</button>
+    <div style="display:flex; align-items:center; gap:7px; padding: 6px 9px 0;">
+      <div class="segment" style="margin:0; flex:1;">
+        <button class="active" data-site="bj88" onclick="selectSite('bj88')" id="siteBtnBj88">BJ88</button>
+        <button data-site="e2bet" onclick="selectSite('e2bet')" id="siteBtnE2bet">E2BET</button>
+      </div>
+      <button class="lock-toggle-btn" id="siteLockBtn" onclick="toggleSiteLock()" aria-label="Lock site" style="margin-bottom:5px;">
+        <svg id="siteLockIconOpen" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/></svg>
+        <svg id="siteLockIconClosed" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      </button>
     </div>
     <div class="chip-row" id="usernameChips">
       <div class="chip-empty">fill name + phone first</div>
@@ -339,10 +454,37 @@
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
         </button>
       </div>
+      <div class="output-line" onclick="copyRow('outFullName', this)">
+        <div>
+          <div class="output-sub">Full Name</div>
+          <div class="output-text" id="outFullName">—</div>
+        </div>
+        <button class="copy-icon-btn" aria-hidden="true">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+        </button>
+      </div>
       <div class="output-line" onclick="copyRow('outPhone', this)">
         <div>
           <div class="output-sub">Phone</div>
           <div class="output-text" id="outPhone">—</div>
+        </div>
+        <button class="copy-icon-btn" aria-hidden="true">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+        </button>
+      </div>
+      <div class="output-line" onclick="copyRow('outBankName', this)">
+        <div>
+          <div class="output-sub">Bank Name</div>
+          <div class="output-text" id="outBankName">—</div>
+        </div>
+        <button class="copy-icon-btn" aria-hidden="true">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+        </button>
+      </div>
+      <div class="output-line" onclick="copyRow('outBankNumber', this)">
+        <div>
+          <div class="output-sub">Bank No.</div>
+          <div class="output-text" id="outBankNumber">—</div>
         </div>
         <button class="copy-icon-btn" aria-hidden="true">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
@@ -416,8 +558,9 @@
 <script>
 let selectedSite = 'bj88';
 let pickedUsername = '';
+let detectedBankName = '';
 let msgLang = 'km'; // Send-to-customer message is always Khmer
-let ocrLang = 'khm'; // which language to scan for: 'khm' or 'eng'
+let ocrLang = 'eng'; // which language to scan for: 'khm' or 'eng' — defaults to English
 
 const SITES = {
   bj88:  { label: 'BJ88',  suffix: '@bjs.com',   link: 'https://bj88vip.com/kh/km' },
@@ -426,8 +569,10 @@ const SITES = {
 
 function setTheme(mode){
   document.body.setAttribute('data-theme', mode);
-  document.getElementById('lightBtn').classList.toggle('active', mode==='light');
-  document.getElementById('darkBtn').classList.toggle('active', mode==='dark');
+  document.querySelectorAll('#themeSwitch button').forEach(b=>{
+    b.classList.toggle('active', b.dataset.themeBtn === mode);
+  });
+  try{ localStorage.setItem('account_generator_theme', mode); } catch(e){}
 }
 
 function showToast(msg){
@@ -440,16 +585,37 @@ function showToast(msg){
 
 function selectOcrLang(lang){
   ocrLang = lang;
-  document.querySelectorAll('.segment button[data-ocrlang]').forEach(b=>b.classList.remove('active'));
-  document.querySelector(`.segment button[data-ocrlang="${lang}"]`).classList.add('active');
+  document.querySelectorAll('#ocrLangToggle button[data-ocrlang]').forEach(b=>b.classList.remove('active'));
+  document.querySelector(`#ocrLangToggle button[data-ocrlang="${lang}"]`).classList.add('active');
+  document.getElementById('ocrLangToggle').setAttribute('data-active', lang);
   saveState();
 }
 
+let isSiteLocked = false;
+
 function selectSite(site){
+  if(isSiteLocked) return; // locked staff can't accidentally switch sites
   selectedSite = site;
   document.querySelectorAll('.segment button[data-site]').forEach(b=>b.classList.remove('active'));
   document.querySelector(`.segment button[data-site="${site}"]`).classList.add('active');
   renderAll();
+  saveState();
+}
+
+function applySiteLockUI(){
+  const btn = document.getElementById('siteLockBtn');
+  const openIcon = document.getElementById('siteLockIconOpen');
+  const closedIcon = document.getElementById('siteLockIconClosed');
+  btn.classList.toggle('locked', isSiteLocked);
+  document.getElementById('siteBtnBj88').disabled = isSiteLocked;
+  document.getElementById('siteBtnE2bet').disabled = isSiteLocked;
+  openIcon.style.display = isSiteLocked ? 'none' : 'block';
+  closedIcon.style.display = isSiteLocked ? 'block' : 'none';
+}
+
+function toggleSiteLock(){
+  isSiteLocked = !isSiteLocked;
+  applySiteLockUI();
   saveState();
 }
 
@@ -465,84 +631,158 @@ function lastWordKey(name){
 
 const KHMER_RANGE = /[\u1780-\u17FF]/;
 
+// Khmer words that are bank/UI noise, not names — written in Khmer script so they
+// can be filtered the same way the English noise list filters bank names.
+const KHMER_NOISE_WORDS = [
+  'ធនាគារ','ខូអិលធី','អេធីប៊ី','អេស៊ីលីដា','វីង','ខេអេចគ្យូអា','ស្កេន','ទូទាត់',
+  'លេខ','គណនី','សាច់ប្រាក់','ប្រាក់','ផ្ទេរ','ការផ្ទេរប្រាក់','ប្រតិបត្តិការ','ជោគជ័យ',
+  'បរាជ័យ','កំពុង','ថ្ងៃខែ','ម៉ោង','សាខា','អត្តលេខ','ចំនួន','សរុប','ប្រាក់រៀល','ដុល្លារ',
+  'រូបិយប័ណ្ណ','អ្នកផ្ញើ','អ្នកទទួល','មកពី','ទៅកាន់','មូលហេតុ','កំណត់ចំណាំ','បញ្ជាក់',
+  'រក្សាទុក','ចែករំលែក','បានបញ្ចប់','កម្ពុជា','ភ្នំពេញ','ប្រទេសកម្ពុជា','ឯកជន','រដ្ឋ',
+  'អន្តរជាតិ','ខាងជើង','ខាងត្បូង','ខាងកើត','ខាងលិច','សាខាទី','កាបូបអេឡិចត្រូនិក'
+];
+
+// Heuristic Khmer name detector. The previous version simply picked the line
+// with the most Khmer characters, which often grabbed bank slogans, addresses,
+// or branch names instead of the customer's actual name. This version instead:
+// 1) splits the OCR text into candidate "name-shaped" lines,
+// 2) throws out lines containing bank/UI vocabulary,
+// 3) throws out lines that are too long to be a person's name,
+// 4) prefers short 2–4 "word cluster" lines, similar in shape to how Khmer
+//    names are usually written (2-4 syllable clusters separated by a space).
 function detectNameFromKhmerText(text){
   if(!text) return '';
   const rawLines = text.split(/\n+/).map(l=>l.trim()).filter(Boolean);
+
   let best = '';
-  let bestScore = 0;
-  for(let line of rawLines){
-    // keep khmer letters/marks and spaces only
+  let bestScore = -Infinity;
+
+  rawLines.forEach((line, idx) => {
+    // keep Khmer letters/marks and spaces only — strips digits, Latin letters,
+    // punctuation, and QR artifacts that OCR sometimes merges onto the same line
     let cleaned = line.replace(/[^\u1780-\u17FF\s]/g, ' ').replace(/\s+/g,' ').trim();
-    if(!cleaned) continue;
+    if(!cleaned) return;
+
     const khmerCharCount = (cleaned.match(/[\u1780-\u17FF]/g)||[]).length;
-    if(khmerCharCount < 3) continue;
-    let score = khmerCharCount;
-    if(cleaned.length > 30) score -= 5; // probably a sentence, not a name
+    if(khmerCharCount < 3) return; // too short to be meaningful
+
+    // reject lines containing known bank/UI vocabulary
+    const containsNoise = KHMER_NOISE_WORDS.some(w => cleaned.includes(w));
+    if(containsNoise) return;
+
+    const words = cleaned.split(' ').filter(Boolean);
+    // a name is rarely 1 long fused word or more than 4 separate words
+    if(words.length > 4) return;
+
+    let score = 0;
+    // prefer lines near the top of the receipt — Cambodian bank slips and KHQR
+    // cards almost always print the account holder's name in the first few lines
+    score += Math.max(0, 6 - idx);
+    // prefer compact word counts typical of a Khmer full name (2–3 clusters)
+    if(words.length >= 1 && words.length <= 3) score += 4;
+    // moderate total length is name-like; very long lines are sentences/addresses
+    if(cleaned.length >= 4 && cleaned.length <= 22) score += 3;
+    if(cleaned.length > 30) score -= 6;
+    score += Math.min(khmerCharCount, 12) * 0.5;
+
     if(score > bestScore){
       bestScore = score;
       best = cleaned;
     }
-  }
+  });
+
   if(bestScore < 4) return '';
   return best;
 }
 
+// English/Latin name detector for screenshots where the account holder's name
+// is printed in Latin letters (e.g. "SREYMECH CHEN" on an ABA KHQR card).
+// Heavily expanded noise list + stricter name-shape scoring versus the
+// previous version, which sometimes let bank phrases or UI labels through.
 function detectNameFromQR(text){
   if(!text) return '';
 
-  // Words that show up as UI/app/bank noise on Cambodian bank & QR screenshots
+  // Words/brands that show up as UI, bank, or KHQR noise on Cambodian bank
+  // screenshots — expanded to cover more banks, e-wallets, and receipt vocabulary
+  // so they never get mistaken for part of a customer's name.
   const noiseWords = [
-    'ABA','ACLEDA','WING','BAKONG','KHQR','QR','BANK','PAY','PI','PIPAY','TRUE',
-    'MONEY','CANADIA','VATTANAC','PRINCE','SATHAPANA','PRASAC','HATTHA','AMK',
-    'CHIPMONG','CAMBODIA','POST','PHNOM','PENH','COMMERCIAL','PUBLIC','FOREIGN',
-    'KHMER','CAMBODIAN','UNION','MAYBANK','CIMB','SBI','RHB','UOB','VISA',
-    'MASTERCARD','MERCHANT','TRANSFER','TRANSACTION','SUCCESSFUL','SUCCESS',
-    'COMPLETED','APPROVED','PENDING','FAILED','AMOUNT','TOTAL','FEE','CURRENCY',
-    'RECEIVER','RECEIVED','SENDER','SEND','FROM','REFERENCE','REF','NO','ID',
-    'DATE','TIME','ACCOUNT','NUMBER','BALANCE','REMARK','NOTE','DESCRIPTION',
-    'PURPOSE','TYPE','STATUS','MOBILE','APP','SCAN','SCANNED','CODE','PAYMENT',
-    'PAID','RECEIPT','SLIP','DETAIL','DETAILS','INFO','SAVE','SHARE','DONE',
-    'CONFIRM','CONFIRMED','USD','KHR','RIEL','DOLLAR'
+    'ABA','ACLEDA','WING','BAKONG','KHQR','QR','NBC','BANK','PAY','PI','PIPAY',
+    'TRUE','MONEY','TRUEMONEY','CANADIA','VATTANAC','PRINCE','SATHAPANA','PRASAC',
+    'HATTHA','AMK','CHIPMONG','CHIP','MONG','CAMBODIA','CAMBODIAN','POST','PHNOM',
+    'PENH','COMMERCIAL','PUBLIC','FOREIGN','KHMER','UNION','MAYBANK','CIMB','SBI',
+    'RHB','UOB','VISA','MASTERCARD','UNIONPAY','MERCHANT','TRANSFER','TRANSACTION',
+    'SUCCESSFUL','SUCCESS','COMPLETED','APPROVED','PENDING','FAILED','AMOUNT',
+    'TOTAL','FEE','CURRENCY','RECEIVER','RECEIVED','SENDER','SEND','SENT','FROM',
+    'REFERENCE','REF','NO','ID','DATE','TIME','ACCOUNT','NUMBER','BALANCE',
+    'REMARK','NOTE','DESCRIPTION','PURPOSE','TYPE','STATUS','MOBILE','APP',
+    'SCAN','SCANNED','CODE','PAYMENT','PAID','RECEIPT','SLIP','DETAIL','DETAILS',
+    'INFO','SAVE','SHARE','DONE','CONFIRM','CONFIRMED','USD','KHR','RIEL',
+    'DOLLAR','BRANCH','SWIFT','IBAN','LIMITED','LTD','PLC','CORP','CO',
+    'CUSTOMER','SERVICE','HOTLINE','SUPPORT','HELP','CONTACT','WWW','HTTP',
+    'HTTPS','COM','APP','DOWNLOAD','SCREENSHOT','SAVED','SHARED'
   ];
 
   const rawLines = text.split(/\n+/).map(l => l.trim()).filter(Boolean);
   const titleWords = ['MR','MRS','MS','MISS','MDM','DR'];
 
   let best = '';
-  let bestScore = 0;
+  let bestScore = -Infinity;
 
-  for(let line of rawLines){
+  rawLines.forEach((line, idx) => {
     let cleaned = line.replace(/[^A-Za-z\s]/g, ' ').replace(/\s+/g, ' ').trim();
-    if(!cleaned || cleaned.length < 3) continue;
+    if(!cleaned || cleaned.length < 3) return;
 
     let words = cleaned.split(' ').filter(Boolean);
     if(words.length > 1 && titleWords.includes(words[0].toUpperCase().replace(/\.$/,''))){
       words = words.slice(1);
     }
-    if(words.length === 0 || words.length > 5) continue;
+    if(words.length === 0 || words.length > 4) return;
 
     const upperWords = words.map(w => w.toUpperCase());
-    const noiseCount = upperWords.filter(w => noiseWords.includes(w)).length;
-    if(noiseCount > 0) continue;
-    if(words.some(w => w.length === 1)) continue;
+    // reject if ANY word matches a noise term, or if any word is a substring
+    // match for a multi-word brand fragment (e.g. "TRUE" + "MONEY")
+    const hasNoise = upperWords.some(w => noiseWords.includes(w));
+    if(hasNoise) return;
+    if(words.some(w => w.length === 1)) return; // stray initials/artifacts
+    if(!words.every(w => /^[A-Z]/.test(w))) return; // names are Capitalized
 
-    if(!words.every(w => /^[A-Z]/.test(w))) continue;
+    // reject ALL-CAPS single long fused word (OCR sometimes merges letters from
+    // a logo or watermark into one block) unless it looks like two names stuck together
+    if(words.length === 1 && words[0].length > 14) return;
 
     let score = 0;
-    score += Math.min(words.length, 3) * 2;
-    if(words.length >= 2 && words.length <= 3) score += 3;
-    if(words.length === 1 && words[0].length > 12) score -= 3;
+    // name lines are usually near the top of a KHQR card, just under the bank header
+    score += Math.max(0, 6 - idx);
+    if(words.length === 2 || words.length === 3) score += 4;
     const avgLen = words.reduce((a,w)=>a+w.length,0) / words.length;
-    if(avgLen >= 3 && avgLen <= 10) score += 2;
+    if(avgLen >= 3 && avgLen <= 9) score += 3;
+    // mild boost if every letter after the first in each word is lowercase-shaped
+    // in the original (proper-case names), since OCR usually preserves case on
+    // clean bank-app renders
+    const properCaseHits = line.split(/\s+/).filter(w => /^[A-Z][a-z]+$/.test(w)).length;
+    score += properCaseHits * 1.5;
 
     if(score > bestScore){
       bestScore = score;
       best = words.join(' ');
     }
-  }
+  });
 
   if(bestScore < 4) return '';
   return best;
+}
+
+// Identifies which bank/e-wallet produced the screenshot, purely so its name
+// can be excluded from name detection with certainty (not shown in the UI).
+function detectBankBrand(text){
+  if(!text) return '';
+  const upper = text.toUpperCase();
+  const brands = ['ABA','ACLEDA','WING','BAKONG','TRUE MONEY','TRUEMONEY','CANADIA',
+    'VATTANAC','PRINCE BANK','SATHAPANA','PRASAC','HATTHA','AMK','CHIPMONG','CIMB'];
+  for(const b of brands){
+    if(upper.includes(b)) return b;
+  }
+  return '';
 }
 
 function detectBankNumberFromText(text){
@@ -643,7 +883,10 @@ function renderAll(){
   const currentPassword = document.getElementById('passwordInput').value || 'ab1234';
 
   document.getElementById('outUsername').textContent = pickedUsername || '—';
+  document.getElementById('outFullName').textContent = name || '—';
   document.getElementById('outPhone').textContent = phoneDigits || '—';
+  document.getElementById('outBankName').textContent = detectedBankName || '—';
+  document.getElementById('outBankNumber').textContent = document.getElementById('custBankNumber').value.trim() || '—';
   document.getElementById('outGmail').textContent = gmail;
   document.getElementById('outLink').textContent = site.link;
 
@@ -680,7 +923,9 @@ function saveState(){
       name: document.getElementById('custName').value,
       phone: document.getElementById('custPhone').value,
       bankNumber: document.getElementById('custBankNumber').value,
+      bankName: detectedBankName,
       site: selectedSite,
+      siteLocked: isSiteLocked,
       pickedUsername: pickedUsername,
       password: document.getElementById('passwordInput').value,
       locked: isPasswordLocked,
@@ -694,14 +939,21 @@ function saveState(){
 
 function initPassword(){
   try{
+    const savedTheme = localStorage.getItem('account_generator_theme');
+    if(savedTheme){ setTheme(savedTheme); } else { setTheme('light'); }
+  } catch(e){ setTheme('light'); }
+
+  try{
     const raw = localStorage.getItem('account_generator_state');
     if(raw){
       const s = JSON.parse(raw);
       if(s.name) document.getElementById('custName').value = s.name;
       if(s.phone) document.getElementById('custPhone').value = s.phone;
       if(s.bankNumber) document.getElementById('custBankNumber').value = s.bankNumber;
+      if(s.bankName) detectedBankName = s.bankName;
       if(s.behalf) document.getElementById('behalfInput').value = s.behalf;
       if(s.site && SITES[s.site]) selectSite(s.site);
+      isSiteLocked = !!s.siteLocked;
       if(s.msgLang) msgLang = s.msgLang;
       if(s.ocrLang) ocrLang = s.ocrLang;
       isPasswordLocked = !!s.locked;
@@ -718,12 +970,14 @@ function initPassword(){
   const langBtn = document.querySelector(`.segment button[data-lang="${msgLang}"]`);
   if(langBtn) langBtn.classList.add('active');
 
-  document.querySelectorAll('.segment button[data-ocrlang]').forEach(b=>b.classList.remove('active'));
-  const ocrBtn = document.querySelector(`.segment button[data-ocrlang="${ocrLang}"]`);
+  document.querySelectorAll('#ocrLangToggle button[data-ocrlang]').forEach(b=>b.classList.remove('active'));
+  const ocrBtn = document.querySelector(`#ocrLangToggle button[data-ocrlang="${ocrLang}"]`);
   if(ocrBtn) ocrBtn.classList.add('active');
+  document.getElementById('ocrLangToggle').setAttribute('data-active', ocrLang);
 
   stateLoaded = true;
   applyLockUI();
+  applySiteLockUI();
   renderPasswordSuggestions();
   renderAll();
 }
@@ -880,6 +1134,7 @@ async function runOCR(file){
       ? detectNameFromKhmerText(text)
       : detectNameFromQR(text);
     let bankNumber = detectBankNumberFromText(text);
+    let bankBrand = detectBankBrand(text);
 
     // If the sparse-text pass found nothing useful, retry once with the
     // default auto page segmentation — different layouts respond better to each.
@@ -890,6 +1145,23 @@ async function runOCR(file){
         ? detectNameFromKhmerText(retryText)
         : detectNameFromQR(retryText);
       bankNumber = detectBankNumberFromText(retryText);
+      if(!bankBrand) bankBrand = detectBankBrand(retryText);
+    }
+
+    // If still nothing found, the customer's name might actually be printed in
+    // the OTHER script than the one selected (e.g. toggle says Khmer but the
+    // KHQR card prints the name in Latin letters). Try the other language once
+    // automatically so staff don't have to notice and flip the toggle themselves.
+    if(!detectedName){
+      const otherLang = ocrLang === 'khm' ? 'eng' : 'khm';
+      const crossResult = await Tesseract.recognize(processed, otherLang, { tessedit_pageseg_mode: '11' });
+      const crossText = crossResult.data.text || '';
+      const crossName = otherLang === 'khm'
+        ? detectNameFromKhmerText(crossText)
+        : detectNameFromQR(crossText);
+      if(crossName) detectedName = crossName;
+      if(!bankNumber) bankNumber = detectBankNumberFromText(crossText);
+      if(!bankBrand) bankBrand = detectBankBrand(crossText);
     }
 
     let statusParts = [];
@@ -902,8 +1174,12 @@ async function runOCR(file){
       document.getElementById('custBankNumber').value = bankNumber;
       statusParts.push('លេខគណនី: ' + bankNumber);
     }
+    if(bankBrand){
+      detectedBankName = bankBrand;
+      statusParts.push('ធនាគារ: ' + bankBrand);
+    }
 
-    if(statusParts.length){
+    if(detectedName || bankNumber || bankBrand){
       status.textContent = 'រកឃើញ — ' + statusParts.join(' | ');
       renderUsernameChips();
       renderAll();
@@ -994,6 +1270,7 @@ function clearAll(){
   document.getElementById('qrImage').value = '';
   document.getElementById('qrStatus').textContent = '';
   pickedUsername = '';
+  detectedBankName = '';
   if(!isPasswordLocked){
     document.getElementById('passwordInput').value = 'ab1234';
   }
