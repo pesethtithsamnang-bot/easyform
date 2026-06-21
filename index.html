@@ -39,8 +39,6 @@
     --bj88: #FF7A57;
     --e2bet: #6E8CFF;
   }
-
-  /* Relax — soft lavender & cream, low-contrast and easy on tired eyes */
   [data-theme="relax"]{
     --bg: #F1ECF7;
     --grouped-bg: #FDFBFE;
@@ -59,8 +57,6 @@
     --bj88: #E0708A;
     --e2bet: #7B6FE0;
   }
-
-  /* Sea — turquoise & sand, bright coastal feel */
   [data-theme="sea"]{
     --bg: #E7F6F4;
     --grouped-bg: #FFFFFF;
@@ -79,8 +75,6 @@
     --bj88: #E8623F;
     --e2bet: #1AA6B7;
   }
-
-  /* Ocean — deep navy & teal, darker and moodier than Sea */
   [data-theme="ocean"]{
     --bg: #0B2230;
     --grouped-bg: #123244;
@@ -99,8 +93,6 @@
     --bj88: #FF8A6B;
     --e2bet: #4FB8E0;
   }
-
-  /* Tree — warm forest greens & bark, grounded and natural */
   [data-theme="tree"]{
     --bg: #EFEBDD;
     --grouped-bg: #FBFAF3;
@@ -211,7 +203,6 @@
   }
   .file-btn input[type=file]{ display:none; }
 
-  /* segmented control for site */
   .segment{
     display:flex; background: var(--fill); border-radius: 10px; padding: 3px; margin: 9px 9px 5px;
     border: var(--border-w) solid var(--text);
@@ -226,8 +217,6 @@
   .segment button.active[data-site="e2bet"]{ background: var(--e2bet); }
   .segment button:disabled{ opacity: 0.6; cursor: not-allowed; }
 
-  /* OCR language toggle — visually distinct pill with a sliding thumb,
-     so it never reads as "the same control" as the BJ88/E2BET segment above it */
   .lang-toggle{
     position: relative;
     display:flex; background: var(--fill-strong); border-radius: 999px; padding: 4px;
@@ -250,7 +239,6 @@
   .lang-toggle button.active{ color: #fff; }
   .lang-toggle button:active{ transform: scale(0.97); }
 
-  /* username chips */
   .chip-row{ display:flex; gap:6px; padding: 7px 13px; flex-wrap: wrap; }
   .chip{
     flex:1; min-width: 86px; text-align:center; padding: 8px 6px; border-radius: 9px;
@@ -265,7 +253,6 @@
   .chip.picked{ border-color: var(--text); color: var(--text); background: var(--yellow) !important; }
   .chip-empty{ padding: 8px 13px; color: var(--label); font-size: 12.5px; }
 
-  /* output cards */
   .output-card{
     background: var(--grouped-bg);
     border: var(--border-w) solid var(--grouped-border);
@@ -294,7 +281,7 @@
     background: var(--yellow); color: var(--text); cursor:pointer;
     display:flex; align-items:center; justify-content:center;
     transition: background .15s, color .15s, transform .1s;
-    pointer-events: none; /* whole row handles the tap now */
+    pointer-events: none;
   }
   .copy-icon-btn.copied{ background: var(--green); color:#fff; border-color: var(--green); }
 
@@ -365,6 +352,15 @@
     transition: opacity .2s, transform .2s; z-index: 50; text-transform: uppercase; letter-spacing:0.3px;
   }
   .toast.show{ opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  .bundle-btn-row{ display:flex; gap:8px; margin-bottom: 6px; }
+  .bundle-btn-row .copy-full-btn{ margin-bottom:0; }
+  .copy-all-btn{
+    flex: 1; padding: 11px; border-radius: 10px; border: var(--border-w) solid var(--text);
+    background: var(--blue); color: #fff; font-size: 13.5px; font-weight: 800; cursor:pointer;
+    letter-spacing: 0.2px; text-transform: uppercase; display:flex; align-items:center; justify-content:center; gap:6px;
+  }
+  .copy-all-btn.copied{ background: var(--green); border-color: var(--green); }
 </style>
 </head>
 <body data-theme="light">
@@ -444,6 +440,14 @@
   <div id="resultsArea">
 
     <div class="section-title">លទ្ធផល — ចុចដើម្បីចម្លង (tap to copy)</div>
+
+    <div class="bundle-btn-row">
+      <button class="copy-all-btn" id="copyAllExtBtn" onclick="copyAllForExtension(this)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+        Copy All (extension)
+      </button>
+    </div>
+
     <div class="output-card">
       <div class="output-line" onclick="copyRow('outUsername', this)">
         <div>
@@ -559,8 +563,8 @@
 let selectedSite = 'bj88';
 let pickedUsername = '';
 let detectedBankName = '';
-let msgLang = 'km'; // Send-to-customer message is always Khmer
-let ocrLang = 'eng'; // which language to scan for: 'khm' or 'eng' — defaults to English
+let msgLang = 'km';
+let ocrLang = 'eng';
 
 const SITES = {
   bj88:  { label: 'BJ88',  suffix: '@bjs.com',   link: 'https://bj88855.com/kh/km/login' },
@@ -594,7 +598,7 @@ function selectOcrLang(lang){
 let isSiteLocked = false;
 
 function selectSite(site){
-  if(isSiteLocked) return; // locked staff can't accidentally switch sites
+  if(isSiteLocked) return;
   selectedSite = site;
   document.querySelectorAll('.segment button[data-site]').forEach(b=>b.classList.remove('active'));
   document.querySelector(`.segment button[data-site="${site}"]`).classList.add('active');
@@ -631,8 +635,6 @@ function lastWordKey(name){
 
 const KHMER_RANGE = /[\u1780-\u17FF]/;
 
-// Khmer words that are bank/UI noise, not names — written in Khmer script so they
-// can be filtered the same way the English noise list filters bank names.
 const KHMER_NOISE_WORDS = [
   'ធនាគារ','ខូអិលធី','អេធីប៊ី','អេស៊ីលីដា','វីង','ខេអេចគ្យូអា','ស្កេន','ទូទាត់',
   'លេខ','គណនី','សាច់ប្រាក់','ប្រាក់','ផ្ទេរ','ការផ្ទេរប្រាក់','ប្រតិបត្តិការ','ជោគជ័យ',
@@ -642,14 +644,6 @@ const KHMER_NOISE_WORDS = [
   'អន្តរជាតិ','ខាងជើង','ខាងត្បូង','ខាងកើត','ខាងលិច','សាខាទី','កាបូបអេឡិចត្រូនិក'
 ];
 
-// Heuristic Khmer name detector. The previous version simply picked the line
-// with the most Khmer characters, which often grabbed bank slogans, addresses,
-// or branch names instead of the customer's actual name. This version instead:
-// 1) splits the OCR text into candidate "name-shaped" lines,
-// 2) throws out lines containing bank/UI vocabulary,
-// 3) throws out lines that are too long to be a person's name,
-// 4) prefers short 2–4 "word cluster" lines, similar in shape to how Khmer
-//    names are usually written (2-4 syllable clusters separated by a space).
 function detectNameFromKhmerText(text){
   if(!text) return '';
   const rawLines = text.split(/\n+/).map(l=>l.trim()).filter(Boolean);
@@ -658,29 +652,21 @@ function detectNameFromKhmerText(text){
   let bestScore = -Infinity;
 
   rawLines.forEach((line, idx) => {
-    // keep Khmer letters/marks and spaces only — strips digits, Latin letters,
-    // punctuation, and QR artifacts that OCR sometimes merges onto the same line
     let cleaned = line.replace(/[^\u1780-\u17FF\s]/g, ' ').replace(/\s+/g,' ').trim();
     if(!cleaned) return;
 
     const khmerCharCount = (cleaned.match(/[\u1780-\u17FF]/g)||[]).length;
-    if(khmerCharCount < 3) return; // too short to be meaningful
+    if(khmerCharCount < 3) return;
 
-    // reject lines containing known bank/UI vocabulary
     const containsNoise = KHMER_NOISE_WORDS.some(w => cleaned.includes(w));
     if(containsNoise) return;
 
     const words = cleaned.split(' ').filter(Boolean);
-    // a name is rarely 1 long fused word or more than 4 separate words
     if(words.length > 4) return;
 
     let score = 0;
-    // prefer lines near the top of the receipt — Cambodian bank slips and KHQR
-    // cards almost always print the account holder's name in the first few lines
     score += Math.max(0, 6 - idx);
-    // prefer compact word counts typical of a Khmer full name (2–3 clusters)
     if(words.length >= 1 && words.length <= 3) score += 4;
-    // moderate total length is name-like; very long lines are sentences/addresses
     if(cleaned.length >= 4 && cleaned.length <= 22) score += 3;
     if(cleaned.length > 30) score -= 6;
     score += Math.min(khmerCharCount, 12) * 0.5;
@@ -695,16 +681,9 @@ function detectNameFromKhmerText(text){
   return best;
 }
 
-// English/Latin name detector for screenshots where the account holder's name
-// is printed in Latin letters (e.g. "SREYMECH CHEN" on an ABA KHQR card).
-// Heavily expanded noise list + stricter name-shape scoring versus the
-// previous version, which sometimes let bank phrases or UI labels through.
 function detectNameFromQR(text){
   if(!text) return '';
 
-  // Words/brands that show up as UI, bank, or KHQR noise on Cambodian bank
-  // screenshots — expanded to cover more banks, e-wallets, and receipt vocabulary
-  // so they never get mistaken for part of a customer's name.
   const noiseWords = [
     'ABA','ACLEDA','WING','BAKONG','KHQR','QR','NBC','BANK','PAY','PI','PIPAY',
     'TRUE','MONEY','TRUEMONEY','CANADIA','VATTANAC','PRINCE','SATHAPANA','PRASAC',
@@ -739,26 +718,18 @@ function detectNameFromQR(text){
     if(words.length === 0 || words.length > 4) return;
 
     const upperWords = words.map(w => w.toUpperCase());
-    // reject if ANY word matches a noise term, or if any word is a substring
-    // match for a multi-word brand fragment (e.g. "TRUE" + "MONEY")
     const hasNoise = upperWords.some(w => noiseWords.includes(w));
     if(hasNoise) return;
-    if(words.some(w => w.length === 1)) return; // stray initials/artifacts
-    if(!words.every(w => /^[A-Z]/.test(w))) return; // names are Capitalized
+    if(words.some(w => w.length === 1)) return;
+    if(!words.every(w => /^[A-Z]/.test(w))) return;
 
-    // reject ALL-CAPS single long fused word (OCR sometimes merges letters from
-    // a logo or watermark into one block) unless it looks like two names stuck together
     if(words.length === 1 && words[0].length > 14) return;
 
     let score = 0;
-    // name lines are usually near the top of a KHQR card, just under the bank header
     score += Math.max(0, 6 - idx);
     if(words.length === 2 || words.length === 3) score += 4;
     const avgLen = words.reduce((a,w)=>a+w.length,0) / words.length;
     if(avgLen >= 3 && avgLen <= 9) score += 3;
-    // mild boost if every letter after the first in each word is lowercase-shaped
-    // in the original (proper-case names), since OCR usually preserves case on
-    // clean bank-app renders
     const properCaseHits = line.split(/\s+/).filter(w => /^[A-Z][a-z]+$/.test(w)).length;
     score += properCaseHits * 1.5;
 
@@ -772,8 +743,6 @@ function detectNameFromQR(text){
   return best;
 }
 
-// Identifies which bank/e-wallet produced the screenshot, purely so its name
-// can be excluded from name detection with certainty (not shown in the UI).
 function detectBankBrand(text){
   if(!text) return '';
   const upper = text.toUpperCase();
@@ -787,8 +756,6 @@ function detectBankBrand(text){
 
 function detectBankNumberFromText(text){
   if(!text) return '';
-  // grab digit runs, allowing spaces/dashes inside, plus masked digits shown
-  // as asterisks/dots on bank slips (e.g. "9917***828" or "9917•••828")
   const candidates = [];
   const matches = text.match(/[\d*xX•][\d \-*xX•]{6,22}[\d*xX•]/g) || [];
   for(const m of matches){
@@ -796,14 +763,11 @@ function detectBankNumberFromText(text){
     const digitCount = (cleaned.match(/\d/g)||[]).length;
     const maskCount = (cleaned.match(/\*/g)||[]).length;
     const total = cleaned.length;
-    // require at least 8 total chars, a real mix of digits, and not mostly stars
     if(total >= 8 && total <= 19 && digitCount >= 4 && maskCount <= digitCount){
       candidates.push(cleaned);
     }
   }
   if(candidates.length === 0) return '';
-  // prefer the longest candidate (account numbers are usually longer than phone numbers);
-  // among ties, prefer ones with fewer masked characters (more complete reads)
   candidates.sort((a,b)=> (b.length - a.length) || ((a.match(/\*/g)||[]).length - (b.match(/\*/g)||[]).length));
   return candidates[0];
 }
@@ -866,8 +830,6 @@ function escapeHtml(str){
   return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 }
 
-// Wraps the key words in the Khmer sentence in a small styled tag so they
-// stand out as labels rather than blending into the paragraph.
 function styleEnglishTags(text){
   return escapeHtml(text).replace(/(គណនី|ចូល)/g, '<span class="msg-tag">$1</span>');
 }
@@ -912,7 +874,6 @@ document.getElementById('custName').addEventListener('input', ()=>{ renderUserna
 document.getElementById('custPhone').addEventListener('input', ()=>{ renderUsernameChips(); renderAll(); saveState(); });
 document.getElementById('custBankNumber').addEventListener('input', ()=>{ renderAll(); saveState(); });
 
-// ---------- Full auto-save (per-device, via localStorage) ----------
 let isPasswordLocked = false;
 let stateLoaded = false;
 
@@ -1055,15 +1016,11 @@ initPassword();
 
 document.getElementById('behalfInput').addEventListener('input', ()=>{ saveState(); });
 
-// ---------- Image preprocessing to boost OCR accuracy on small/blurry screenshots ----------
-// Upscales small images, converts to grayscale, and applies contrast + threshold
-// so faint or tiny bank-app text reads much cleaner for Tesseract.
 function preprocessImage(file){
   return new Promise((resolve, reject)=>{
     const img = new Image();
     img.onload = () => {
       try{
-        // Upscale small screenshots so small text has more pixels to work with
         const MIN_WIDTH = 1400;
         const scale = img.width < MIN_WIDTH ? (MIN_WIDTH / img.width) : 1;
         const w = Math.round(img.width * scale);
@@ -1079,7 +1036,6 @@ function preprocessImage(file){
         const imageData = ctx.getImageData(0, 0, w, h);
         const d = imageData.data;
 
-        // grayscale + simple contrast stretch
         let min = 255, max = 0;
         const gray = new Uint8ClampedArray(w*h);
         for(let i=0, p=0; i<d.length; i+=4, p++){
@@ -1091,7 +1047,6 @@ function preprocessImage(file){
         const range = Math.max(1, max - min);
         for(let i=0, p=0; i<d.length; i+=4, p++){
           let v = ((gray[p] - min) / range) * 255;
-          // mild sharpen via contrast curve (push toward black/white)
           v = v < 128 ? Math.max(0, v - 18) : Math.min(255, v + 18);
           d[i] = d[i+1] = d[i+2] = v;
         }
@@ -1099,7 +1054,7 @@ function preprocessImage(file){
 
         canvas.toBlob(blob => resolve(blob || file), 'image/png');
       } catch(e){
-        resolve(file); // fall back to original file if canvas processing fails
+        resolve(file);
       }
     };
     img.onerror = () => resolve(file);
@@ -1122,9 +1077,6 @@ async function runOCR(file){
 
     status.textContent = 'កំពុងអាន... (scanning...)';
 
-    // Scan only the language the user picked, so mixed text on the screenshot
-    // (bank UI, QR labels, etc.) doesn't pollute the result. PSM 11 (sparse text)
-    // works better than the default for receipts/QR slips with scattered text blocks.
     const result = await Tesseract.recognize(processed, ocrLang, {
       tessedit_pageseg_mode: '11'
     });
@@ -1136,8 +1088,6 @@ async function runOCR(file){
     let bankNumber = detectBankNumberFromText(text);
     let bankBrand = detectBankBrand(text);
 
-    // If the sparse-text pass found nothing useful, retry once with the
-    // default auto page segmentation — different layouts respond better to each.
     if(!detectedName && !bankNumber){
       const retry = await Tesseract.recognize(processed, ocrLang, { tessedit_pageseg_mode: '3' });
       const retryText = retry.data.text || '';
@@ -1148,10 +1098,6 @@ async function runOCR(file){
       if(!bankBrand) bankBrand = detectBankBrand(retryText);
     }
 
-    // If still nothing found, the customer's name might actually be printed in
-    // the OTHER script than the one selected (e.g. toggle says Khmer but the
-    // KHQR card prints the name in Latin letters). Try the other language once
-    // automatically so staff don't have to notice and flip the toggle themselves.
     if(!detectedName){
       const otherLang = ocrLang === 'khm' ? 'eng' : 'khm';
       const crossResult = await Tesseract.recognize(processed, otherLang, { tessedit_pageseg_mode: '11' });
@@ -1244,7 +1190,6 @@ function copyOne(id, btn){
   });
 }
 
-// Tap anywhere on a result row to copy — no need to tap the small icon or select text.
 function copyRow(id, rowEl){
   const el = document.getElementById(id);
   const text = el.textContent;
@@ -1260,6 +1205,25 @@ function copyFull(id, el){
   if(!text) return;
   navigator.clipboard.writeText(text).then(()=>{
     showToast('Message copied');
+  });
+}
+
+function copyAllForExtension(btn){
+  const bundle = {
+    __autofill: true,
+    username: pickedUsername || '',
+    fullName: document.getElementById('custName').value.trim() || '',
+    phone: cleanPhone(document.getElementById('custPhone').value) || '',
+    email: document.getElementById('outGmail').textContent !== '—'
+      ? document.getElementById('outGmail').textContent : '',
+    password: document.getElementById('passwordInput').value || ''
+  };
+  navigator.clipboard.writeText(JSON.stringify(bundle)).then(()=>{
+    const original = btn.innerHTML;
+    btn.innerHTML = CHECK_SVG + ' Copied — open signup page';
+    btn.classList.add('copied');
+    showToast('Copied for extension');
+    setTimeout(()=>{ btn.innerHTML = original; btn.classList.remove('copied'); }, 2000);
   });
 }
 
@@ -1283,3 +1247,4 @@ renderUsernameChips();
 </script>
 </body>
 </html>
+
