@@ -846,12 +846,50 @@ function toggleSiteLock(){
 
 function cleanPhone(phone){ return (phone||'').replace(/\D/g,''); }
 
+const KHMER_ROMAN = {
+  'ក':'k','ខ':'kh','គ':'k','ឃ':'kh','ង':'ng',
+  'ច':'ch','ឆ':'chh','ជ':'ch','ឈ':'chh','ញ':'nh',
+  'ដ':'d','ឋ':'th','ឌ':'d','ឍ':'th','ណ':'n',
+  'ត':'t','ថ':'th','ទ':'t','ធ':'th','ន':'n',
+  'ប':'b','ផ':'ph','ព':'p','ភ':'ph','ម':'m',
+  'យ':'y','រ':'r','ល':'l','វ':'v','ស':'s','ហ':'h','ឡ':'l','អ':'a',
+  'ឥ':'e','ឦ':'ei','ឧ':'o','ឩ':'ou','ឪ':'ov','ឫ':'r','ឬ':'r','ឭ':'l','ឮ':'l',
+  'ឯ':'e','ឰ':'ai','ឱ':'ao','ឲ':'ao','ឳ':'ao',
+  'ា':'a','ិ':'i','ី':'i','ឹ':'oe','ឺ':'oe','ុ':'o','ូ':'u','ួ':'uo',
+  'ើ':'oe','ឿ':'uea','ៀ':'ie','េ':'e','ែ':'ae','ៃ':'ai','ោ':'o','ៅ':'ov',
+  'ំ':'m','ះ':'h','ៈ':'a','៉':'','៊':'','់':'','៌':'','៍':'','៎':'','៏':'',
+  '័':'','្':'','ៗ':'','៕':'','។':''
+};
+
+function romanizeKhmerWord(word){
+  return [...(word || '')].map(ch => KHMER_ROMAN[ch] ?? '').join('').replace(/[^a-z]/gi, '').toLowerCase();
+}
+
+function nameTokensForUsername(name){
+  const rawParts = (name || '').trim().split(/\s+/).filter(Boolean);
+  const tokens = rawParts.map(part => {
+    const english = part.toLowerCase().replace(/[^a-z]/g, '');
+    return english || romanizeKhmerWord(part);
+  }).filter(t => t.length >= 2);
+
+  if(tokens.length) return tokens;
+
+  const compactKhmer = romanizeKhmerWord(name);
+  return compactKhmer.length >= 2 ? [compactKhmer] : [];
+}
+
+function usernamePart(token){
+  const clean = (token || '').toLowerCase().replace(/[^a-z]/g, '');
+  if(clean.length <= 4) return clean;
+  return clean.slice(0, 4);
+}
+
 function nameKeyNoSpace(name){
-  return (name||'').trim().toLowerCase().replace(/\s+/g,'').replace(/[^a-z]/g,'');
+  return nameTokensForUsername(name).join('');
 }
 function lastWordKey(name){
-  const parts = (name||'').trim().split(/\s+/).filter(Boolean);
-  return (parts.length ? parts[parts.length-1] : '').toLowerCase().replace(/[^a-z]/g,'');
+  const parts = nameTokensForUsername(name);
+  return parts.length ? parts[parts.length - 1] : '';
 }
 
 const KHMER_RANGE = /[\u1780-\u17FF]/;
@@ -1006,16 +1044,22 @@ function detectBankNumberFromText(text){
 
 function buildUsernameSuggestions(name, phone){
   const digits = cleanPhone(phone);
-  const fullKey = nameKeyNoSpace(name);
-  if(!fullKey || digits.length < 3) return [];
+  const tokens = nameTokensForUsername(name);
+  if(tokens.length === 0 || digits.length < 3) return [];
   const last3 = digits.slice(-3);
-  const first1 = fullKey.slice(0, 1);
-  const first2 = fullKey.slice(0, 2);
-  const lastKey = lastWordKey(name);
-  const opts = [first1 + last3, first2 + last3];
-  if(lastKey && lastKey[0] !== first1) opts.push(lastKey.slice(0, 1) + last3);
-  opts.push(fullKey.slice(0, 3) + last3);
-  return [...new Set(opts)];
+  const last4 = digits.length >= 4 ? digits.slice(-4) : last3;
+  const first = usernamePart(tokens[0]);
+  const last = usernamePart(tokens[tokens.length - 1]);
+  const full = usernamePart(tokens.join(''));
+  const opts = [];
+
+  if(last.length >= 3) opts.push(last + last3);
+  if(first.length >= 3) opts.push(first + last3);
+  if(last.length >= 3) opts.push(last + last4);
+  if(first.length >= 3) opts.push(first + last4);
+  if(full.length >= 3) opts.push(full + last3);
+
+  return [...new Set(opts)].slice(0, 5);
 }
 
 function renderUsernameChips(){
