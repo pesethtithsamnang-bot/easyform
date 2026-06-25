@@ -3,86 +3,90 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Account Generator</title>
+<title>JAXON CHEN</title>
 <style>
   :root{
-    --bg: #F3EEE2;
+    --bg: #F2F2F5;
     --grouped-bg: #FFFFFF;
-    --grouped-border: #17151B;
-    --label: #6b6558;
+    --grouped-border: rgba(23,21,27,0.06);
+    --label: #8A8A93;
     --text: #17151B;
     --text-secondary: #45403A;
-    --separator: rgba(23,21,27,0.1);
+    --separator: rgba(23,21,27,0.07);
     --blue: #2D5BFF;
     --green: #1E8E5A;
     --red: #E83A1F;
     --orange: #FF5A36;
     --yellow: #FFC83D;
-    --fill: #ECE6D6;
-    --fill-strong: #E2DAC4;
-    --bj88: #FF5A36;
-    --e2bet: #2D5BFF;
+    --fill: #F0F0F2;
+    --fill-strong: #E5E5E9;
+    --icon-bg: #EFEFF2;
+    --bj88: #17151B;
+    --e2bet: #FFFFFF;
     --mono: 'SF Mono', ui-monospace, 'Menlo', monospace;
     --sys: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Helvetica Neue', 'Khmer OS Battambang', 'Khmer OS', Roboto, sans-serif;
-    --border-w: 2px;
+    --border-w: 1px;
   }
   [data-theme="dark"]{
-    --bg: #18161C;
+    --bg: #16151A;
     --grouped-bg: #221F28;
-    --grouped-border: #F3EEE2;
+    --grouped-border: rgba(243,238,226,0.08);
     --label: #9b9588;
     --text: #F3EEE2;
     --text-secondary: #C9C3B5;
-    --separator: rgba(243,238,226,0.14);
+    --separator: rgba(243,238,226,0.08);
     --fill: #2C2933;
     --fill-strong: #38343F;
+    --icon-bg: #2C2933;
     --bj88: #FF7A57;
     --e2bet: #6E8CFF;
   }
   [data-theme="relax"]{
-    --bg: #F1ECF7;
+    --bg: #F3EFF8;
     --grouped-bg: #FDFBFE;
-    --grouped-border: #4A3F5C;
-    --label: #8D81A0;
+    --grouped-border: rgba(74,63,92,0.07);
+    --label: #9D91B0;
     --text: #3A3050;
     --text-secondary: #5C5070;
-    --separator: rgba(74,63,92,0.12);
+    --separator: rgba(74,63,92,0.07);
     --blue: #7B6FE0;
     --green: #5BAE8C;
     --red: #E0708A;
     --orange: #C99BE0;
     --yellow: #F4C9E0;
-    --fill: #EBE2F5;
+    --fill: #EFE9F7;
     --fill-strong: #DFD2F0;
+    --icon-bg: #EFE9F7;
     --bj88: #E0708A;
     --e2bet: #7B6FE0;
   }
   [data-theme="sea"]{
-    --bg: #E7F6F4;
+    --bg: #EAF7F5;
     --grouped-bg: #FFFFFF;
-    --grouped-border: #0E5C63;
-    --label: #5B8A8C;
+    --grouped-border: rgba(14,92,99,0.07);
+    --label: #7AA3A5;
     --text: #0E3D40;
     --text-secondary: #1F5A5E;
-    --separator: rgba(14,92,99,0.12);
+    --separator: rgba(14,92,99,0.07);
     --blue: #1AA6B7;
     --green: #2FA88A;
     --red: #E8623F;
     --orange: #2FBFB0;
     --yellow: #FFD874;
-    --fill: #D7EFEC;
+    --fill: #E2F3F1;
     --fill-strong: #C2E5E0;
+    --icon-bg: #E2F3F1;
     --bj88: #E8623F;
     --e2bet: #1AA6B7;
   }
   [data-theme="ocean"]{
-    --bg: #0B2230;
+    --bg: #0B1F2C;
     --grouped-bg: #123244;
-    --grouped-border: #BFE6EE;
-    --label: #7FA8B8;
+    --grouped-border: rgba(191,230,238,0.08);
+    --label: #6E96A6;
     --text: #E7F4F8;
     --text-secondary: #BFE0E8;
-    --separator: rgba(191,230,238,0.16);
+    --separator: rgba(191,230,238,0.08);
     --blue: #4FB8E0;
     --green: #38C29A;
     --red: #FF6B5C;
@@ -90,24 +94,26 @@
     --yellow: #FFD166;
     --fill: #1A4456;
     --fill-strong: #235A70;
+    --icon-bg: #1A4456;
     --bj88: #FF8A6B;
     --e2bet: #4FB8E0;
   }
   [data-theme="tree"]{
-    --bg: #EFEBDD;
+    --bg: #EEEBDF;
     --grouped-bg: #FBFAF3;
-    --grouped-border: #3B3022;
-    --label: #74684E;
+    --grouped-border: rgba(59,48,34,0.07);
+    --label: #948A6E;
     --text: #2F2A1C;
     --text-secondary: #4F4630;
-    --separator: rgba(59,48,34,0.12);
+    --separator: rgba(59,48,34,0.07);
     --blue: #3E7C5A;
     --green: #4C8C4A;
     --red: #C75B39;
     --orange: #C9A23C;
     --yellow: #E0C24E;
-    --fill: #E1DCC4;
+    --fill: #E7E2CC;
     --fill-strong: #D3CCAA;
+    --icon-bg: #E7E2CC;
     --bj88: #C75B39;
     --e2bet: #3E7C5A;
   }
@@ -128,100 +134,100 @@
   .navbar{
     position: sticky; top:0; z-index:10;
     background: var(--bg);
-    padding: calc(6px + env(safe-area-inset-top)) 14px 6px;
+    padding: calc(10px + env(safe-area-inset-top)) 16px 10px;
     display:flex; align-items:center; justify-content:space-between;
-    border-bottom: var(--border-w) solid var(--text);
     gap: 8px;
   }
-  .navbar-id{ display:flex; align-items:center; gap:7px; }
+  .navbar-id{ display:flex; align-items:center; gap:10px; }
   .navbar-mark{ flex-shrink:0; }
   .navbar h1{
-    font-size: 14px; font-weight: 800; letter-spacing: 0.2px; margin:0;
+    font-size: 18px; font-weight: 800; letter-spacing: 0.1px; margin:0;
     text-transform: uppercase;
   }
 
   .theme-switch{
     display:flex; align-items:center; gap:2px;
-    background: var(--fill); border: var(--border-w) solid var(--text); border-radius: 999px; padding: 3px;
-    flex-shrink:0;
+    background: var(--icon-bg); border-radius: 999px; padding: 3px;
+    flex-shrink:0; box-shadow: inset 0 0 0 1px var(--separator);
   }
   .theme-switch button{
-    border: 1.5px solid transparent; background:transparent; width:21px; height:21px; padding:0; border-radius:999px;
-    font-size: 11px; cursor:pointer; color: var(--label); line-height:1;
+    border: none; background:transparent; width:24px; height:24px; padding:0; border-radius:999px;
+    font-size: 12px; cursor:pointer; color: var(--label); line-height:1;
     display:flex; align-items:center; justify-content:center;
-    transition: transform .12s, border-color .12s;
+    transition: transform .12s, background .12s, box-shadow .12s;
   }
-  .theme-switch button.active{ border-color: var(--text); transform: scale(1.12); }
+  .theme-switch button.active{ background: var(--grouped-bg); box-shadow: 0 1px 3px rgba(0,0,0,0.12); transform: scale(1.05); }
 
   .wrap{ max-width: 480px; margin: 0 auto; padding: 0 14px; }
 
   .section-title{
-    font-size: 11px; color: var(--text); text-transform: uppercase;
-    letter-spacing: 0.6px; margin: 8px 2px 4px; font-weight: 800;
+    font-size: 12px; color: var(--label); text-transform: uppercase;
+    letter-spacing: 0.5px; margin: 14px 4px 6px; font-weight: 700;
     display:flex; align-items:center; gap:6px;
   }
-  .section-title::before{
-    content:''; width: 8px; height: 8px; background: var(--orange); flex-shrink:0;
-    border-radius: 1px;
-  }
-  .section-title:first-of-type{ margin-top: 6px; }
+  .section-title:first-of-type{ margin-top: 10px; }
 
   .grouped{
     background: var(--grouped-bg);
-    border-radius: 14px;
+    border-radius: 18px;
     overflow: hidden;
-    border: var(--border-w) solid var(--grouped-border);
-    box-shadow: 3px 3px 0 rgba(23,21,27,0.08);
+    box-shadow: 0 1px 3px rgba(23,21,27,0.06), 0 0 0 1px var(--grouped-border);
   }
-  [data-theme="dark"] .grouped{ box-shadow: 3px 3px 0 rgba(0,0,0,0.35); }
+  [data-theme="dark"] .grouped{ box-shadow: 0 1px 4px rgba(0,0,0,0.4), 0 0 0 1px var(--grouped-border); }
 
   .row{
-    display:flex; align-items:center; padding: 0 13px;
-    border-bottom: var(--border-w) solid var(--separator);
-    min-height: 36px;
+    display:flex; align-items:center; padding: 0 14px;
+    border-bottom: 1px solid var(--separator);
+    min-height: 52px; gap: 12px;
   }
   .row:last-child{ border-bottom: none; }
+  .row-icon{
+    flex-shrink:0; width: 32px; height: 32px; border-radius: 999px;
+    background: var(--icon-bg); display:flex; align-items:center; justify-content:center;
+    color: var(--text-secondary);
+  }
   .row .row-label{
-    font-size: 14px; color: var(--text); flex-shrink:0; width: 84px;
-    letter-spacing: -0.1px; font-weight: 700;
+    font-size: 15px; color: var(--text); flex-shrink:0; width: 76px;
+    letter-spacing: -0.1px; font-weight: 600;
   }
   .row input[type=text], .row input[type=tel]{
     flex:1; border:none; background:transparent; color: var(--text);
-    font-size: 15px; padding: 7px 0; font-family: inherit; min-width:0;
-    letter-spacing: -0.1px; font-weight: 600;
+    font-size: 15px; padding: 9px 0; font-family: inherit; min-width:0;
+    letter-spacing: -0.1px; font-weight: 500; text-align: right;
   }
   .row input::placeholder{ color: var(--label); font-weight:400; }
   .row input:focus{ outline:none; }
-  .row.detected{ background: rgba(30,142,90,0.08); }
+  .row.detected{ background: rgba(30,142,90,0.06); }
 
-  .qr-row{ flex-direction:column; align-items:stretch; padding: 7px 13px; }
-  .qr-row .row-label{ width:auto; margin-bottom:6px; font-size:12px; color:var(--label); font-weight:500; }
+  .qr-row{ flex-direction:column; align-items:stretch; padding: 10px 14px; }
+  .qr-row .row-label{ width:auto; margin-bottom:8px; font-size:12px; color:var(--label); font-weight:500; }
   .file-btn{
-    display:inline-flex; align-items:center; gap:6px; width:fit-content;
-    background: var(--yellow); color: var(--text); font-size:13px; font-weight:800;
-    padding: 7px 13px; border-radius: 999px; cursor:pointer; border: var(--border-w) solid var(--text);
+    display:flex; align-items:center; justify-content:center; gap:8px; width:100%;
+    background: var(--yellow); color: var(--text); font-size:14px; font-weight:700;
+    padding: 12px 16px; border-radius: 12px; cursor:pointer; border: none;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.08);
   }
   .file-btn input[type=file]{ display:none; }
 
   .segment{
-    display:flex; background: var(--fill); border-radius: 10px; padding: 3px; margin: 9px 9px 5px;
-    border: var(--border-w) solid var(--text);
+    display:flex; background: var(--icon-bg); border-radius: 12px; padding: 4px; margin: 10px 10px 6px;
+    box-shadow: inset 0 0 0 1px var(--separator);
   }
   .segment button{
-    flex:1; border:none; background:transparent; padding: 8px 0; border-radius:7px;
-    font-size: 13px; font-weight: 800; cursor:pointer; color: var(--text-secondary);
-    transition: background .15s, color .15s; letter-spacing: 0.2px;
+    flex:1; border:none; background:transparent; padding: 10px 0; border-radius:9px;
+    font-size: 14px; font-weight: 700; cursor:pointer; color: var(--text-secondary);
+    transition: background .15s, color .15s, box-shadow .15s; letter-spacing: 0.2px;
   }
-  .segment button.active{ box-shadow: none; color: #fff; }
-  .segment button.active[data-site="bj88"]{ background: var(--bj88); }
-  .segment button.active[data-site="e2bet"]{ background: var(--e2bet); }
+  .segment button.active{ box-shadow: 0 1px 3px rgba(0,0,0,0.15); color: var(--grouped-bg); }
+  .segment button.active[data-site="bj88"]{ background: var(--text); color: var(--bg); }
+  .segment button.active[data-site="e2bet"]{ background: var(--grouped-bg); color: var(--text); box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
   .segment button:disabled{ opacity: 0.6; cursor: not-allowed; }
 
   .lang-toggle{
     position: relative;
-    display:flex; background: var(--fill-strong); border-radius: 999px; padding: 4px;
-    margin: 0 0 9px; border: var(--border-w) dashed var(--separator);
-    overflow: hidden;
+    display:flex; background: var(--fill); border-radius: 999px; padding: 4px;
+    margin: 0 0 10px;
+    overflow: hidden; box-shadow: inset 0 0 0 1px var(--separator);
   }
   .lang-toggle .lang-thumb{
     position:absolute; top:4px; left:4px; height: calc(100% - 8px); width: calc(50% - 4px);
@@ -239,42 +245,39 @@
   .lang-toggle button.active{ color: #fff; }
   .lang-toggle button:active{ transform: scale(0.97); }
 
-  .chip-row{ display:flex; gap:6px; padding: 7px 13px; flex-wrap: wrap; }
+  .chip-row{ display:flex; gap:8px; padding: 10px 14px; flex-wrap: wrap; }
   .chip{
-    flex:1; min-width: 86px; text-align:center; padding: 8px 6px; border-radius: 9px;
-    background: var(--fill); font-family: var(--mono); font-size: 12.5px; font-weight:800;
-    color: var(--text-secondary); cursor:pointer; border: var(--border-w) solid transparent;
-    transition: transform .1s;
+    flex:1; min-width: 86px; text-align:center; padding: 9px 8px; border-radius: 999px;
+    background: var(--icon-bg); font-family: var(--mono); font-size: 12.5px; font-weight:700;
+    color: var(--text-secondary); cursor:pointer; border: none;
+    transition: transform .1s, background .12s;
   }
-  .chip:nth-child(3n+1){ background: rgba(255,90,54,0.13); }
-  .chip:nth-child(3n+2){ background: rgba(255,200,61,0.22); }
-  .chip:nth-child(3n+3){ background: rgba(45,91,255,0.12); }
   .chip:active{ transform: scale(0.96); }
-  .chip.picked{ border-color: var(--text); color: var(--text); background: var(--yellow) !important; }
-  .chip-empty{ padding: 8px 13px; color: var(--label); font-size: 12.5px; }
+  .chip.picked{ color: var(--text); background: var(--yellow); }
+  .chip-empty{ padding: 10px 14px; color: var(--label); font-size: 12.5px; }
 
   .output-card{
     background: var(--grouped-bg);
-    border: var(--border-w) solid var(--grouped-border);
-    border-radius: 14px; padding: 1px 13px;
-    margin-bottom: 6px;
-    box-shadow: 3px 3px 0 rgba(23,21,27,0.08);
+    border-radius: 18px; padding: 2px 14px;
+    margin-bottom: 8px;
+    box-shadow: 0 1px 3px rgba(23,21,27,0.06), 0 0 0 1px var(--grouped-border);
   }
-  [data-theme="dark"] .output-card{ box-shadow: 3px 3px 0 rgba(0,0,0,0.35); }
+  [data-theme="dark"] .output-card{ box-shadow: 0 1px 4px rgba(0,0,0,0.4), 0 0 0 1px var(--grouped-border); }
   .output-line{
     display:flex; align-items:center; justify-content:space-between;
-    padding: 7px 0; border-bottom: var(--border-w) solid var(--separator); gap: 10px;
-    cursor: pointer; border-radius: 9px; margin: 0 -7px; padding-left:7px; padding-right:7px;
+    padding: 9px 0; border-bottom: 1px solid var(--separator); gap: 12px;
+    cursor: pointer; border-radius: 9px; margin: 0 -8px; padding-left:8px; padding-right:8px;
     transition: background .12s;
     -webkit-user-select: none; user-select: none;
   }
   .output-line:active{ background: var(--fill); }
   .output-line:last-child{ border-bottom: none; }
+  .output-line-main{ display:flex; align-items:center; gap:12px; flex-shrink:0; }
   .output-text{
-    font-family: var(--mono); font-size: 14.5px; color: var(--text); font-weight:700;
-    word-break: break-all; min-width:0;
+    font-family: var(--sys); font-size: 14.5px; color: var(--label); font-weight:500;
+    word-break: break-all; min-width:0; text-align:right; flex:1;
   }
-  .output-sub{ font-size: 10.5px; color: var(--label); margin-bottom: 2px; font-weight:700; text-transform: uppercase; letter-spacing:0.3px; }
+  .output-sub{ font-size: 15px; color: var(--text); font-weight:600; white-space:nowrap; }
 
   .copy-icon-btn{
     flex-shrink:0; width: 30px; height: 30px; border-radius: 8px; border: var(--border-w) solid var(--text);
@@ -317,6 +320,14 @@
     transition: background .12s; border: 1.5px dashed var(--separator);
   }
   .msg-block:active{ background: var(--fill-strong); }
+  .greeting-input{
+    width:100%; font-family: var(--sys); font-size: 14.5px; color: var(--text); font-weight:500;
+    background: var(--fill); border-radius: 10px; padding: 11px 12px; line-height: 1.55;
+    border: 1.5px solid var(--separator); margin: 9px 0 6px; resize: vertical;
+    min-height: 44px;
+  }
+  .greeting-input:focus{ outline:none; border-color: var(--blue); background: var(--grouped-bg); }
+  .greeting-hint{ font-size:10.5px; color: var(--label); margin: 0 0 2px; font-weight:600; }
   .msg-tag{
     font-family: var(--mono); font-weight: 800; font-size: 0.92em;
     color: var(--text); background: var(--yellow);
@@ -361,6 +372,13 @@
     letter-spacing: 0.2px; text-transform: uppercase; display:flex; align-items:center; justify-content:center; gap:6px;
   }
   .copy-all-btn.copied{ background: var(--green); border-color: var(--green); }
+
+  .scan-confidence{
+    display:inline-flex; align-items:center; gap:4px; font-size:10.5px; font-weight:800;
+    padding: 2px 7px; border-radius: 999px; margin-left:6px; letter-spacing:0.2px; text-transform:uppercase;
+  }
+  .scan-confidence.high{ background: rgba(30,142,90,0.18); color: var(--green); }
+  .scan-confidence.low{ background: rgba(232,58,31,0.15); color: var(--red); }
 </style>
 </head>
 <body data-theme="light">
@@ -372,7 +390,7 @@
       <path d="M13 1 A12 12 0 0 1 13 25 Z" fill="var(--orange)" stroke="var(--text)" stroke-width="2"/>
       <circle cx="13" cy="13" r="4" fill="var(--blue)" stroke="var(--text)" stroke-width="1.5"/>
     </svg>
-    <h1>Account Gen</h1>
+    <h1>JAXON CHEN</h1>
   </div>
   <div class="theme-switch" id="themeSwitch">
     <button data-theme-btn="light" onclick="setTheme('light')" title="Light" style="background:#F3EEE2;">☀️</button>
@@ -389,14 +407,17 @@
   <div class="section-title">Customer</div>
   <div class="grouped">
     <div class="row">
+      <div class="row-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
       <span class="row-label">Name</span>
       <input type="text" id="custName" placeholder="vreak yuth" autocomplete="off">
     </div>
     <div class="row">
+      <div class="row-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
       <span class="row-label">Phone</span>
       <input type="tel" id="custPhone" placeholder="0885888348" autocomplete="off">
     </div>
     <div class="row" id="bankRow">
+      <div class="row-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="22" x2="21" y2="22"/><line x1="6" y1="18" x2="6" y2="11"/><line x1="10" y1="18" x2="10" y2="11"/><line x1="14" y1="18" x2="14" y2="11"/><line x1="18" y1="18" x2="18" y2="11"/><polygon points="12 2 20 7 4 7"/></svg></div>
       <span class="row-label">Bank No.</span>
       <input type="text" id="custBankNumber" placeholder="e.g. 9917***828" autocomplete="off">
     </div>
@@ -450,62 +471,71 @@
 
     <div class="output-card">
       <div class="output-line" onclick="copyRow('outUsername', this)">
-        <div>
+        <div class="output-line-main">
+          <div class="row-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
           <div class="output-sub">Username</div>
-          <div class="output-text" id="outUsername">—</div>
         </div>
+        <div class="output-text" id="outUsername">—</div>
         <button class="copy-icon-btn" aria-hidden="true">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
         </button>
       </div>
       <div class="output-line" onclick="copyRow('outFullName', this)">
-        <div>
+        <div class="output-line-main">
+          <div class="row-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M15 8h2M15 12h2M7 16h10"/></svg></div>
           <div class="output-sub">Full Name</div>
-          <div class="output-text" id="outFullName">—</div>
         </div>
+        <div class="output-text" id="outFullName">—</div>
         <button class="copy-icon-btn" aria-hidden="true">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
         </button>
       </div>
       <div class="output-line" onclick="copyRow('outPhone', this)">
-        <div>
+        <div class="output-line-main">
+          <div class="row-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
           <div class="output-sub">Phone</div>
-          <div class="output-text" id="outPhone">—</div>
         </div>
+        <div class="output-text" id="outPhone">—</div>
         <button class="copy-icon-btn" aria-hidden="true">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
         </button>
       </div>
       <div class="output-line" onclick="copyRow('outBankName', this)">
-        <div>
+        <div class="output-line-main">
+          <div class="row-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="22" x2="21" y2="22"/><line x1="6" y1="18" x2="6" y2="11"/><line x1="10" y1="18" x2="10" y2="11"/><line x1="14" y1="18" x2="14" y2="11"/><line x1="18" y1="18" x2="18" y2="11"/><polygon points="12 2 20 7 4 7"/></svg></div>
           <div class="output-sub">Bank Name</div>
-          <div class="output-text" id="outBankName">—</div>
         </div>
+        <div class="output-text" id="outBankName">—</div>
         <button class="copy-icon-btn" aria-hidden="true">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
         </button>
       </div>
       <div class="output-line" onclick="copyRow('outBankNumber', this)">
-        <div>
+        <div class="output-line-main">
+          <div class="row-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
           <div class="output-sub">Bank No.</div>
-          <div class="output-text" id="outBankNumber">—</div>
         </div>
+        <div class="output-text" id="outBankNumber">—</div>
         <button class="copy-icon-btn" aria-hidden="true">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
         </button>
       </div>
       <div class="output-line" onclick="copyRow('outGmail', this)">
-        <div>
+        <div class="output-line-main">
+          <div class="row-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z" opacity="0"/><path d="M22 6l-10 7L2 6"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg></div>
           <div class="output-sub">Gmail</div>
-          <div class="output-text" id="outGmail">—</div>
         </div>
+        <div class="output-text" id="outGmail">—</div>
         <button class="copy-icon-btn" aria-hidden="true">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
         </button>
       </div>
-      <div class="output-line" style="align-items:flex-start; padding-top:8px; cursor:default;" id="passwordLine">
+      <div class="output-line" style="align-items:flex-start; padding-top:10px; cursor:default;" id="passwordLine">
+        <div class="output-line-main" style="margin-top:6px;">
+          <div class="row-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>
+          <div class="output-sub">Password</div>
+        </div>
         <div style="flex:1; min-width:0;">
-          <div class="output-sub">ពាក្យសម្ងាត់ (Password)</div>
           <div style="display:flex; align-items:center; gap:8px;">
             <input type="text" id="passwordInput" value="ab1234" class="password-input">
             <button class="lock-toggle-btn" id="lockToggleBtn" onclick="togglePasswordLock()" aria-label="Lock password">
@@ -520,10 +550,11 @@
         </div>
       </div>
       <div class="output-line" onclick="copyRow('outLink', this)">
-        <div>
-          <div class="output-sub">លីង (Link)</div>
-          <div class="output-text" id="outLink">—</div>
+        <div class="output-line-main">
+          <div class="row-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></div>
+          <div class="output-sub">Link</div>
         </div>
+        <div class="output-text" id="outLink">—</div>
         <button class="copy-icon-btn" aria-hidden="true">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
         </button>
@@ -532,7 +563,11 @@
 
     <div class="section-title">Send to customer</div>
     <div class="output-card" style="padding-bottom:10px;">
-      <div class="msg-block" id="customerMsg" onclick="copyFull('customerMsg', this)"></div>
+      <div class="greeting-hint">✏️ EDITABLE — tap to change the greeting</div>
+      <textarea id="customerGreeting" class="greeting-input" rows="2" spellcheck="false"></textarea>
+      <div class="greeting-hint">🔒 LOCKED — account info (tap below to copy full message)</div>
+      <div class="msg-block" id="customerMsgFixed" onclick="copyFull('customerFullMsg', this)"></div>
+      <div style="display:none" id="customerFullMsg"></div>
     </div>
 
     <div class="section-title">CS Record</div>
@@ -681,6 +716,24 @@ function detectNameFromKhmerText(text){
   return best;
 }
 
+// ---------------------------------------------------------------------------
+// English/Latin name detector — REWRITTEN for much higher accuracy.
+//
+// Root causes fixed from the previous version:
+//  1) It REJECTED any line where a word didn't start with a capital letter.
+//     That silently threw away real, correctly-read names like "E No Mei"
+//     (where "No" and "Mei" are fine, but a name like "deAcosta" or all-lowercase
+//     OCR misreads were getting tossed even when the letters were exactly right).
+//     Names are now accepted in ANY capitalization pattern — full caps, title
+//     case, all lowercase, or mixed — since bank apps render names in all of
+//     these styles depending on the screen.
+//  2) It REJECTED any single-letter word, which kills initials such as the
+//     "E" in "E No Mei". Single letters are now allowed as long as the line
+//     isn't ALL single letters (which would suggest noise/artifacts).
+//  3) Case was being used as a scoring signal in a way that penalized perfectly
+//     valid all-caps or all-lowercase names. Scoring now judges word SHAPE
+//     (letter composition, length, position) instead of capitalization style.
+// ---------------------------------------------------------------------------
 function detectNameFromQR(text){
   if(!text) return '';
 
@@ -698,8 +751,14 @@ function detectNameFromQR(text){
     'INFO','SAVE','SHARE','DONE','CONFIRM','CONFIRMED','USD','KHR','RIEL',
     'DOLLAR','BRANCH','SWIFT','IBAN','LIMITED','LTD','PLC','CORP','CO',
     'CUSTOMER','SERVICE','HOTLINE','SUPPORT','HELP','CONTACT','WWW','HTTP',
-    'HTTPS','COM','APP','DOWNLOAD','SCREENSHOT','SAVED','SHARED'
+    'HTTPS','COM','DOWNLOAD','SCREENSHOT','SAVED','SHARED'
   ];
+  // "NO" is in the noise list above (as in "Reference No."), but it is also a
+  // real, common given name/syllable in Cambodian and Vietnamese names (e.g.
+  // "E No Mei"). Only treat NO as noise when it's NOT the only candidate word
+  // left — i.e. don't reject a whole line just because one word happens to be
+  // "No"; that's handled below by NOT auto-rejecting on this specific word.
+  const SOFT_NOISE_EXCEPTIONS = new Set(['NO']);
 
   const rawLines = text.split(/\n+/).map(l => l.trim()).filter(Boolean);
   const titleWords = ['MR','MRS','MS','MISS','MDM','DR'];
@@ -708,30 +767,54 @@ function detectNameFromQR(text){
   let bestScore = -Infinity;
 
   rawLines.forEach((line, idx) => {
-    let cleaned = line.replace(/[^A-Za-z\s]/g, ' ').replace(/\s+/g, ' ').trim();
-    if(!cleaned || cleaned.length < 3) return;
+    // Keep Latin letters, apostrophes and hyphens (for names like "O'Brien" or
+    // "Sok-Heng"), drop everything else including digits and stray punctuation.
+    let cleaned = line.replace(/[^A-Za-z'\-\s]/g, ' ').replace(/\s+/g, ' ').trim();
+    if(!cleaned || cleaned.length < 1) return;
 
     let words = cleaned.split(' ').filter(Boolean);
     if(words.length > 1 && titleWords.includes(words[0].toUpperCase().replace(/\.$/,''))){
       words = words.slice(1);
     }
-    if(words.length === 0 || words.length > 4) return;
+    if(words.length === 0 || words.length > 5) return;
 
     const upperWords = words.map(w => w.toUpperCase());
-    const hasNoise = upperWords.some(w => noiseWords.includes(w));
-    if(hasNoise) return;
-    if(words.some(w => w.length === 1)) return;
-    if(!words.every(w => /^[A-Z]/.test(w))) return;
 
-    if(words.length === 1 && words[0].length > 14) return;
+    // Reject only on HARD noise words. "NO" alone no longer kills the line —
+    // it is removed from consideration as a name-word but doesn't disqualify
+    // the rest of the line, so "E No Mei" still survives as "E No Mei" or,
+    // if NO is the issue, the remaining words still score normally below.
+    const hasHardNoise = upperWords.some(w => noiseWords.includes(w) && !SOFT_NOISE_EXCEPTIONS.has(w));
+    if(hasHardNoise) return;
+
+    // Reject lines that are ALL single letters (e.g. stray "A B C" artifacts),
+    // but allow a single initial mixed with real words ("E No Mei" is fine).
+    const singleLetterCount = words.filter(w => w.length === 1).length;
+    if(singleLetterCount === words.length && words.length > 1) return;
+
+    // Every "word" must be alphabetic (already guaranteed by the regex above)
+    // and not absurdly long (OCR sometimes fuses two words together).
+    if(words.some(w => w.replace(/[^A-Za-z]/g,'').length > 16)) return;
 
     let score = 0;
+    // Name lines are usually near the top of a KHQR card / bank screenshot.
     score += Math.max(0, 6 - idx);
+    // 2–3 word names are the most common shape (first + last, or first + middle + last).
     if(words.length === 2 || words.length === 3) score += 4;
+    else if(words.length === 1) score += 1; // single-word names happen but score lower
+    // Reasonable average word length for a name syllable/word.
     const avgLen = words.reduce((a,w)=>a+w.length,0) / words.length;
-    if(avgLen >= 3 && avgLen <= 9) score += 3;
-    const properCaseHits = line.split(/\s+/).filter(w => /^[A-Z][a-z]+$/.test(w)).length;
-    score += properCaseHits * 1.5;
+    if(avgLen >= 2 && avgLen <= 10) score += 3;
+    // Mild bonus for consistent capitalization style across the line (all caps
+    // OR all title-case OR all lowercase) — consistent rendering is a good sign
+    // this is a genuine name field rather than OCR noise, but inconsistent
+    // capitalization no longer disqualifies it outright.
+    const allUpper = words.every(w => w === w.toUpperCase());
+    const allTitle = words.every(w => /^[A-Z][a-z'\-]*$/.test(w) || w.length === 1);
+    const allLower = words.every(w => w === w.toLowerCase());
+    if(allUpper || allTitle || allLower) score += 2;
+    // Small bonus if it contains only letters (no stray punctuation already enforced).
+    score += 1;
 
     if(score > bestScore){
       bestScore = score;
@@ -739,7 +822,11 @@ function detectNameFromQR(text){
     }
   });
 
-  if(bestScore < 4) return '';
+  // Lowered acceptance threshold slightly (was 4) since the scoring above is
+  // now more conservative about what even reaches comparison — fewer false
+  // candidates make it through, so the bar for the winner can be a bit lower
+  // without letting noise back in.
+  if(bestScore < 3) return '';
   return best;
 }
 
@@ -772,15 +859,30 @@ function detectBankNumberFromText(text){
   return candidates[0];
 }
 
+// Short username generator. Previously used the full last name (e.g. "yuth348"),
+// which got long and awkward for customers with long names. Now generates
+// compact 1-2 letter prefixes (first letter and first-two-letters of the last
+// name) combined with 3-digit phone suffixes, giving options like "y348" and
+// "yu348" instead of "yuth348" — much faster for customers to type and read back.
 function buildUsernameSuggestions(name, phone){
   const digits = cleanPhone(phone);
   const key = lastWordKey(name);
   if(!key || digits.length < 3) return [];
+
   const last3 = digits.slice(-3);
   const last4 = digits.slice(-4);
-  const first3 = digits.slice(0,3);
-  const opts = [key+last3, key+last4, key+first3];
-  return [...new Set(opts)];
+  const mid3 = digits.length >= 6 ? digits.slice(-6, -3) : digits.slice(0,3);
+
+  const letter1 = key.slice(0,1);   // single first letter, shortest option
+  const letter2 = key.slice(0,2);   // two letters, slightly more recognizable
+
+  const opts = [
+    letter1 + last3,   // shortest: e.g. "y348"
+    letter2 + last3,   // e.g. "yu348"
+    letter1 + last4    // e.g. "y8348" — fallback if the two above collide elsewhere
+  ];
+  // de-dupe while keeping order, and drop any that ended up empty (e.g. 1-char names)
+  return [...new Set(opts)].filter(o => o && o.length >= 3);
 }
 
 function renderUsernameChips(){
@@ -817,14 +919,13 @@ function pickUsername(val){
   saveState();
 }
 
-const MESSAGES = {
-  km: (pickedUsername, password, link) =>
-`សួស្តីបង នេះជា គណនី របស់បងអាចព្យាយាម ចូល បានហើយ
+const DEFAULT_GREETING = 'សួស្តីបង នេះជា គណនី របស់បងអាចព្យាយាម ចូល បានហើយ';
 
-គណនី : ${pickedUsername || '—'}
+function buildFixedFields(pickedUsername, password, link){
+  return `គណនី : ${pickedUsername || '—'}
 ពាក្យសម្ងាត់ : ${password}
-លីង : ${link}`
-};
+លីង : ${link}`;
+}
 
 function escapeHtml(str){
   return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
@@ -852,9 +953,19 @@ function renderAll(){
   document.getElementById('outGmail').textContent = gmail;
   document.getElementById('outLink').textContent = site.link;
 
-  const msgFn = MESSAGES[msgLang] || MESSAGES.km;
-  const rawMsg = msgFn(pickedUsername, currentPassword, site.link);
-  document.getElementById('customerMsg').innerHTML = styleEnglishTags(rawMsg);
+  const fixedFields = buildFixedFields(pickedUsername, currentPassword, site.link);
+
+  const greetingEl = document.getElementById('customerGreeting');
+  // Only set a default greeting if the field is empty (first load) — never
+  // overwrite text the staff member is actively editing.
+  if(!greetingEl.value){
+    greetingEl.value = DEFAULT_GREETING;
+  }
+
+  document.getElementById('customerMsgFixed').innerHTML = styleEnglishTags(fixedFields);
+  // Hidden combined version used by the copy button — greeting (editable) +
+  // a blank line + the fixed account fields (always exact, never edited).
+  document.getElementById('customerFullMsg').textContent = greetingEl.value + '\n\n' + fixedFields;
 
   document.getElementById('csRecord').textContent =
 `Username : ${pickedUsername || '—'}
@@ -891,6 +1002,7 @@ function saveState(){
       password: document.getElementById('passwordInput').value,
       locked: isPasswordLocked,
       behalf: document.getElementById('behalfInput').value,
+      greeting: document.getElementById('customerGreeting').value,
       msgLang: msgLang,
       ocrLang: ocrLang
     };
@@ -913,6 +1025,7 @@ function initPassword(){
       if(s.bankNumber) document.getElementById('custBankNumber').value = s.bankNumber;
       if(s.bankName) detectedBankName = s.bankName;
       if(s.behalf) document.getElementById('behalfInput').value = s.behalf;
+      if(s.greeting) document.getElementById('customerGreeting').value = s.greeting;
       if(s.site && SITES[s.site]) selectSite(s.site);
       isSiteLocked = !!s.siteLocked;
       if(s.msgLang) msgLang = s.msgLang;
@@ -1015,13 +1128,17 @@ document.getElementById('passwordInput').addEventListener('change', function(){
 initPassword();
 
 document.getElementById('behalfInput').addEventListener('input', ()=>{ saveState(); });
+document.getElementById('customerGreeting').addEventListener('input', ()=>{ renderAll(); saveState(); });
 
 function preprocessImage(file){
   return new Promise((resolve, reject)=>{
     const img = new Image();
     img.onload = () => {
       try{
-        const MIN_WIDTH = 1400;
+        // Upscale small screenshots more aggressively (was 1400, now 1800) so
+        // small bank-app fonts have more pixels for Tesseract to resolve
+        // individual letter shapes (k vs h, l vs I vs 1, etc.).
+        const MIN_WIDTH = 1800;
         const scale = img.width < MIN_WIDTH ? (MIN_WIDTH / img.width) : 1;
         const w = Math.round(img.width * scale);
         const h = Math.round(img.height * scale);
@@ -1045,9 +1162,12 @@ function preprocessImage(file){
           if(g > max) max = g;
         }
         const range = Math.max(1, max - min);
+        // Slightly stronger contrast push (was ±18, now ±26) — separates thin
+        // letter strokes (l, i, t) from the background more reliably without
+        // fully binarizing (which can break curved letters like e, a, s).
         for(let i=0, p=0; i<d.length; i+=4, p++){
           let v = ((gray[p] - min) / range) * 255;
-          v = v < 128 ? Math.max(0, v - 18) : Math.min(255, v + 18);
+          v = v < 128 ? Math.max(0, v - 26) : Math.min(255, v + 26);
           d[i] = d[i+1] = d[i+2] = v;
         }
         ctx.putImageData(imageData, 0, 0);
@@ -1060,6 +1180,38 @@ function preprocessImage(file){
     img.onerror = () => resolve(file);
     img.src = URL.createObjectURL(file);
   });
+}
+
+// Cache of the configured Tesseract worker per language so repeat scans
+// (cross-language retry, PSM retry) don't reinitialize from scratch each time.
+const ocrWorkers = {};
+
+async function getOcrWorker(lang){
+  if(ocrWorkers[lang]) return ocrWorkers[lang];
+  const worker = await Tesseract.createWorker(lang);
+  // Restrict the recognized character set for English scans to exactly the
+  // characters a name/bank field can contain. This is the single biggest
+  // accuracy lever: without a whitelist, Tesseract is free to "recognize" a
+  // letter as a digit, punctuation mark, or symbol that happens to look
+  // similar, which is the main source of dropped/garbled letters on small
+  // bank-app text. With a whitelist restricted to A-Z a-z plus a few
+  // name-safe punctuation marks and digits (for account numbers), confusable
+  // shapes get resolved correctly far more often.
+  if(lang === 'eng'){
+    await worker.setParameters({
+      tessedit_char_whitelist: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 '-*•.:",
+      preserve_interword_spaces: '1'
+    });
+  }
+  ocrWorkers[lang] = worker;
+  return worker;
+}
+
+async function recognizeWith(lang, image, psm){
+  const worker = await getOcrWorker(lang);
+  await worker.setParameters({ tessedit_pageseg_mode: psm });
+  const result = await worker.recognize(image);
+  return result.data.text || '';
 }
 
 async function runOCR(file){
@@ -1077,10 +1229,14 @@ async function runOCR(file){
 
     status.textContent = 'កំពុងអាន... (scanning...)';
 
-    const result = await Tesseract.recognize(processed, ocrLang, {
-      tessedit_pageseg_mode: '11'
-    });
-    const text = result.data.text || '';
+    // Speed/accuracy ordering: PSM 6 (single uniform text block) is tried FIRST
+    // because most KHQR cards and bank screenshots present the name as one
+    // clean block of centered text — PSM 6 is both faster and more accurate
+    // on that exact layout than the sparse-text mode. If it succeeds, we stop
+    // immediately (no extra passes), which is what makes a clean photo feel
+    // near-instant. PSM 11 (sparse text) only runs as a fallback for messier
+    // layouts, and PSM 3 (fully automatic) only as a last resort.
+    let text = await recognizeWith(ocrLang, processed, '6');
 
     let detectedName = ocrLang === 'khm'
       ? detectNameFromKhmerText(text)
@@ -1088,20 +1244,33 @@ async function runOCR(file){
     let bankNumber = detectBankNumberFromText(text);
     let bankBrand = detectBankBrand(text);
 
-    if(!detectedName && !bankNumber){
-      const retry = await Tesseract.recognize(processed, ocrLang, { tessedit_pageseg_mode: '3' });
-      const retryText = retry.data.text || '';
-      detectedName = ocrLang === 'khm'
-        ? detectNameFromKhmerText(retryText)
-        : detectNameFromQR(retryText);
-      bankNumber = detectBankNumberFromText(retryText);
-      if(!bankBrand) bankBrand = detectBankBrand(retryText);
+    if(!detectedName){
+      const text2 = await recognizeWith(ocrLang, processed, '11');
+      const name2 = ocrLang === 'khm'
+        ? detectNameFromKhmerText(text2)
+        : detectNameFromQR(text2);
+      if(name2) detectedName = name2;
+      if(!bankNumber) bankNumber = detectBankNumberFromText(text2);
+      if(!bankBrand) bankBrand = detectBankBrand(text2);
     }
 
+    // If still nothing, also try PSM 3 (fully automatic layout) as a third pass —
+    // some bank screenshots have layouts that only this mode segments correctly.
+    if(!detectedName && !bankNumber){
+      const text3 = await recognizeWith(ocrLang, processed, '3');
+      const name3 = ocrLang === 'khm'
+        ? detectNameFromKhmerText(text3)
+        : detectNameFromQR(text3);
+      if(name3) detectedName = name3;
+      if(!bankNumber) bankNumber = detectBankNumberFromText(text3);
+      if(!bankBrand) bankBrand = detectBankBrand(text3);
+    }
+
+    // Cross-language fallback: if the chosen language found no name, the name
+    // may actually be printed in the other script. Try it automatically.
     if(!detectedName){
       const otherLang = ocrLang === 'khm' ? 'eng' : 'khm';
-      const crossResult = await Tesseract.recognize(processed, otherLang, { tessedit_pageseg_mode: '11' });
-      const crossText = crossResult.data.text || '';
+      const crossText = await recognizeWith(otherLang, processed, '6');
       const crossName = otherLang === 'khm'
         ? detectNameFromKhmerText(crossText)
         : detectNameFromQR(crossText);
@@ -1244,7 +1413,13 @@ function clearAll(){
 }
 
 renderUsernameChips();
+
+// Pre-warm the default-language OCR worker in the background right after the
+// page loads, instead of waiting for the first photo upload. Tesseract's
+// worker startup (loading the language model) is the slowest part of the
+// very first scan — doing it now means the first real upload of the day
+// already has a ready worker and feels close to instant.
+setTimeout(() => { getOcrWorker(ocrLang).catch(()=>{}); }, 300);
 </script>
 </body>
 </html>
-
