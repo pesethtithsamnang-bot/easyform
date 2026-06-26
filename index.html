@@ -166,6 +166,33 @@
   }
   .section-title:first-of-type{ margin-top: 6px; }
 
+  .section-title-row{
+    display:flex; align-items:center; justify-content:space-between;
+    margin: 8px 2px 4px;
+    gap: 8px;
+  }
+  .section-title-row .section-title{ margin: 0; flex:1; }
+
+  .hide-toggle-btn{
+    display:flex; align-items:center; gap:5px;
+    border: var(--border-w) solid var(--text);
+    background: var(--fill);
+    color: var(--text);
+    font-size: 11.5px; font-weight: 800;
+    padding: 5px 10px;
+    border-radius: 999px;
+    cursor: pointer;
+    flex-shrink:0;
+    letter-spacing: 0.2px;
+    text-transform: uppercase;
+    transition: background .15s, color .15s;
+  }
+  .hide-toggle-btn.is-hidden{
+    background: var(--text);
+    color: var(--bg);
+  }
+  .hide-toggle-btn svg{ flex-shrink:0; }
+
   .grouped{
     background: var(--grouped-bg);
     border-radius: 14px;
@@ -362,6 +389,13 @@
   }
   .copy-all-btn.copied{ background: var(--green); border-color: var(--green); }
 
+  .register-ext-btn{
+    flex: 1; padding: 11px; border-radius: 10px; border: var(--border-w) solid var(--text);
+    background: var(--orange); color: #fff; font-size: 13.5px; font-weight: 800; cursor:pointer;
+    letter-spacing: 0.2px; text-transform: uppercase; display:flex; align-items:center; justify-content:center; gap:6px;
+  }
+  .register-ext-btn.copied{ background: var(--green); border-color: var(--green); }
+
   /* JAXON CHEN clean mobile redesign */
   :root{
     --bg:#F7F7FA;
@@ -442,6 +476,19 @@
     letter-spacing:.2px;
   }
   .section-title::before{ display:none; }
+  .section-title-row{ margin:18px 2px 9px; }
+  .hide-toggle-btn{
+    border:1px solid var(--grouped-border);
+    background:#fff;
+    color:var(--text);
+    border-radius:999px;
+    font-size:11.5px;
+  }
+  .hide-toggle-btn.is-hidden{
+    background:#111114;
+    color:#fff;
+    border-color:#111114;
+  }
   .grouped,.output-card{
     border:1px solid var(--grouped-border);
     border-radius:8px;
@@ -566,15 +613,16 @@
     font-size:15px;
     line-height:1.45;
   }
-  .copy-full-btn,.copy-all-btn{
+  .copy-full-btn,.copy-all-btn,.register-ext-btn{
     border:0;
     border-radius:999px;
     min-height:50px;
     background:#000;
     color:#fff;
     text-transform:none;
-    font-size:16px;
+    font-size:15px;
   }
+  .register-ext-btn{ background:#FF5A36; }
   .clear-btn{
     border:0;
     border-radius:999px;
@@ -655,95 +703,106 @@
 
   <div id="resultsArea">
 
-    <div class="section-title">លទ្ធផល — ចុចដើម្បីចម្លង (tap to copy)</div>
-
-    <div class="bundle-btn-row">
-      <button class="copy-all-btn" id="copyAllExtBtn" onclick="copyAllForExtension(this)">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
-        Copy All (extension)
+    <div class="section-title-row">
+      <div class="section-title">លទ្ធផល — ចុចដើម្បីចម្លង (tap to copy)</div>
+      <button class="hide-toggle-btn" id="resultsHideBtn" onclick="toggleResultsVisibility()">
+        <svg id="resultsHideIconEye" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        <svg id="resultsHideIconEyeOff" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><path d="M17.94 17.94A10.94 10.94 0 0112 20c-7 0-11-8-11-8a18.6 18.6 0 015.06-5.94M9.9 4.24A10.94 10.94 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19m-6.72-1.07a3 3 0 11-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+        <span id="resultsHideBtnLabel">Hide</span>
       </button>
     </div>
 
-    <div class="output-card">
-      <div class="output-line" onclick="copyRow('outUsername', this)">
-        <div>
-          <div class="output-sub">Username</div>
-          <div class="output-text" id="outUsername">—</div>
-        </div>
-        <button class="copy-icon-btn" aria-hidden="true">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
-        </button>
-      </div>
-      <div class="output-line" onclick="copyRow('outFullName', this)">
-        <div>
-          <div class="output-sub">Full Name</div>
-          <div class="output-text" id="outFullName">—</div>
-        </div>
-        <button class="copy-icon-btn" aria-hidden="true">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
-        </button>
-      </div>
-      <div class="output-line" onclick="copyRow('outPhone', this)">
-        <div>
-          <div class="output-sub">Phone</div>
-          <div class="output-text" id="outPhone">—</div>
-        </div>
-        <button class="copy-icon-btn" aria-hidden="true">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
-        </button>
-      </div>
-      <div class="output-line" onclick="copyRow('outBankName', this)">
-        <div>
-          <div class="output-sub">Bank Name</div>
-          <div class="output-text" id="outBankName">—</div>
-        </div>
-        <button class="copy-icon-btn" aria-hidden="true">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
-        </button>
-      </div>
-      <div class="output-line" onclick="copyRow('outBankNumber', this)">
-        <div>
-          <div class="output-sub">Bank No.</div>
-          <div class="output-text" id="outBankNumber">—</div>
-        </div>
-        <button class="copy-icon-btn" aria-hidden="true">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
-        </button>
-      </div>
-      <div class="output-line" onclick="copyRow('outGmail', this)">
-        <div>
-          <div class="output-sub">Gmail</div>
-          <div class="output-text" id="outGmail">—</div>
-        </div>
-        <button class="copy-icon-btn" aria-hidden="true">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
-        </button>
-      </div>
-      <div class="output-line" style="align-items:flex-start; padding-top:8px; cursor:default;" id="passwordLine">
-        <div style="flex:1; min-width:0;">
-          <div class="output-sub">ពាក្យសម្ងាត់ (Password)</div>
-          <div style="display:flex; align-items:center; gap:8px;">
-            <input type="text" id="passwordInput" value="ab1234" class="password-input">
-            <button class="lock-toggle-btn" id="lockToggleBtn" onclick="togglePasswordLock()" aria-label="Lock password">
-              <svg id="lockIconOpen" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/></svg>
-              <svg id="lockIconClosed" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-            </button>
-            <button class="copy-icon-btn" style="pointer-events:auto;" onclick="copyOne('passwordInput', this)" aria-label="Copy password">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
-            </button>
+    <div class="bundle-btn-row">
+      <button class="register-ext-btn" id="registerExtBtn" onclick="copyAndOpenRegister(this)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        Open Register
+      </button>
+    </div>
+
+    <div id="resultsHideable">
+
+      <div class="output-card">
+        <div class="output-line" onclick="copyRow('outUsername', this)">
+          <div>
+            <div class="output-sub">Username</div>
+            <div class="output-text" id="outUsername">—</div>
           </div>
-          <div class="suggest-row" id="passwordSuggestRow"></div>
+          <button class="copy-icon-btn" aria-hidden="true">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          </button>
+        </div>
+        <div class="output-line" onclick="copyRow('outFullName', this)">
+          <div>
+            <div class="output-sub">Full Name</div>
+            <div class="output-text" id="outFullName">—</div>
+          </div>
+          <button class="copy-icon-btn" aria-hidden="true">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          </button>
+        </div>
+        <div class="output-line" onclick="copyRow('outPhone', this)">
+          <div>
+            <div class="output-sub">Phone</div>
+            <div class="output-text" id="outPhone">—</div>
+          </div>
+          <button class="copy-icon-btn" aria-hidden="true">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          </button>
+        </div>
+        <div class="output-line" onclick="copyRow('outBankName', this)">
+          <div>
+            <div class="output-sub">Bank Name</div>
+            <div class="output-text" id="outBankName">—</div>
+          </div>
+          <button class="copy-icon-btn" aria-hidden="true">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          </button>
+        </div>
+        <div class="output-line" onclick="copyRow('outBankNumber', this)">
+          <div>
+            <div class="output-sub">Bank No.</div>
+            <div class="output-text" id="outBankNumber">—</div>
+          </div>
+          <button class="copy-icon-btn" aria-hidden="true">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          </button>
+        </div>
+        <div class="output-line" onclick="copyRow('outGmail', this)">
+          <div>
+            <div class="output-sub">Gmail</div>
+            <div class="output-text" id="outGmail">—</div>
+          </div>
+          <button class="copy-icon-btn" aria-hidden="true">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          </button>
+        </div>
+        <div class="output-line" style="align-items:flex-start; padding-top:8px; cursor:default;" id="passwordLine">
+          <div style="flex:1; min-width:0;">
+            <div class="output-sub">ពាក្យសម្ងាត់ (Password)</div>
+            <div style="display:flex; align-items:center; gap:8px;">
+              <input type="text" id="passwordInput" value="ab1234" class="password-input">
+              <button class="lock-toggle-btn" id="lockToggleBtn" onclick="togglePasswordLock()" aria-label="Lock password">
+                <svg id="lockIconOpen" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/></svg>
+                <svg id="lockIconClosed" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              </button>
+              <button class="copy-icon-btn" style="pointer-events:auto;" onclick="copyOne('passwordInput', this)" aria-label="Copy password">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+              </button>
+            </div>
+            <div class="suggest-row" id="passwordSuggestRow"></div>
+          </div>
+        </div>
+        <div class="output-line" onclick="copyRow('outLink', this)">
+          <div>
+            <div class="output-sub">លីង (Link)</div>
+            <div class="output-text" id="outLink">—</div>
+          </div>
+          <button class="copy-icon-btn" aria-hidden="true">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          </button>
         </div>
       </div>
-      <div class="output-line" onclick="copyRow('outLink', this)">
-        <div>
-          <div class="output-sub">លីង (Link)</div>
-          <div class="output-text" id="outLink">—</div>
-        </div>
-        <button class="copy-icon-btn" aria-hidden="true">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
-        </button>
-      </div>
+
     </div>
 
     <div class="section-title">Send to customer</div>
@@ -782,10 +841,11 @@ let pickedUsername = '';
 let detectedBankName = '';
 let msgLang = 'km';
 let ocrLang = 'eng';
+let resultsHidden = false;
 
 const SITES = {
-  bj88:  { label: 'BJ88',  suffix: '@bjs.com',   link: 'https://bj88855.com/kh/km/login' },
-  e2bet: { label: 'E2BET', suffix: '@e2bet.com', link: 'https://www.e28th17.com/kh/km/login' }
+  bj88:  { label: 'BJ88',  suffix: '@bjs.com',   link: 'https://bj88855.com/kh/km/login',          registerLink: 'http://vipbj88.com/af/FPXM7C37/Rosiebj' },
+  e2bet: { label: 'E2BET', suffix: '@e2bet.com', link: 'https://www.e28th17.com/kh/km/login',        registerLink: 'http://www.e28th17.com/af/VZBpNtQ5/E2Rosie' }
 };
 
 function setTheme(mode){
@@ -837,6 +897,26 @@ function applySiteLockUI(){
 function toggleSiteLock(){
   isSiteLocked = !isSiteLocked;
   applySiteLockUI();
+  saveState();
+}
+
+function applyResultsVisibilityUI(){
+  const hideable = document.getElementById('resultsHideable');
+  const btn = document.getElementById('resultsHideBtn');
+  const label = document.getElementById('resultsHideBtnLabel');
+  const eyeIcon = document.getElementById('resultsHideIconEye');
+  const eyeOffIcon = document.getElementById('resultsHideIconEyeOff');
+
+  hideable.classList.toggle('hidden', resultsHidden);
+  btn.classList.toggle('is-hidden', resultsHidden);
+  label.textContent = resultsHidden ? 'Show' : 'Hide';
+  eyeIcon.style.display = resultsHidden ? 'none' : 'block';
+  eyeOffIcon.style.display = resultsHidden ? 'block' : 'none';
+}
+
+function toggleResultsVisibility(){
+  resultsHidden = !resultsHidden;
+  applyResultsVisibilityUI();
   saveState();
 }
 
@@ -1178,7 +1258,8 @@ function saveState(){
       behalf: document.getElementById('behalfInput').value,
       messageIntro: document.getElementById('messageIntro').value,
       msgLang: msgLang,
-      ocrLang: ocrLang
+      ocrLang: ocrLang,
+      resultsHidden: resultsHidden
     };
     localStorage.setItem('account_generator_state', JSON.stringify(state));
   } catch(e){ /* storage unavailable (e.g. private browsing) */ }
@@ -1206,6 +1287,7 @@ function initPassword(){
       if(s.ocrLang) ocrLang = s.ocrLang;
       isPasswordLocked = !!s.locked;
       if(s.password) document.getElementById('passwordInput').value = s.password;
+      resultsHidden = !!s.resultsHidden;
       renderUsernameChips();
       if(s.pickedUsername){
         pickedUsername = s.pickedUsername;
@@ -1226,6 +1308,7 @@ function initPassword(){
   stateLoaded = true;
   applyLockUI();
   applySiteLockUI();
+  applyResultsVisibilityUI();
   renderPasswordSuggestions();
   renderAll();
 }
@@ -1413,85 +1496,6 @@ async function runOCR(file){
   const fileInput = document.getElementById('qrImage');
   spinner.classList.remove('hidden');
   fileInput.disabled = true;
-  status.textContent = 'កំពុងកែលម្អរូបភាព... (enhancing image...)';
-
-  try{
-    const processed = await preprocessImage(file);
-
-    status.textContent = 'កំពុងអាន... (scanning...)';
-
-    const result = await Tesseract.recognize(processed, ocrLang, {
-      tessedit_pageseg_mode: '11'
-    });
-    const text = result.data.text || '';
-
-    let detectedName = ocrLang === 'khm'
-      ? detectNameFromKhmerText(text)
-      : detectNameFromQR(text);
-    let bankNumber = detectBankNumberFromText(text);
-    let bankBrand = detectBankBrand(text);
-
-    if(!detectedName && !bankNumber){
-      const retry = await Tesseract.recognize(processed, ocrLang, { tessedit_pageseg_mode: '3' });
-      const retryText = retry.data.text || '';
-      detectedName = ocrLang === 'khm'
-        ? detectNameFromKhmerText(retryText)
-        : detectNameFromQR(retryText);
-      bankNumber = detectBankNumberFromText(retryText);
-      if(!bankBrand) bankBrand = detectBankBrand(retryText);
-    }
-
-    if(!detectedName){
-      const otherLang = ocrLang === 'khm' ? 'eng' : 'khm';
-      const crossResult = await Tesseract.recognize(processed, otherLang, { tessedit_pageseg_mode: '11' });
-      const crossText = crossResult.data.text || '';
-      const crossName = otherLang === 'khm'
-        ? detectNameFromKhmerText(crossText)
-        : detectNameFromQR(crossText);
-      if(crossName) detectedName = crossName;
-      if(!bankNumber) bankNumber = detectBankNumberFromText(crossText);
-      if(!bankBrand) bankBrand = detectBankBrand(crossText);
-    }
-
-    let statusParts = [];
-
-    if(detectedName){
-      document.getElementById('custName').value = detectedName;
-      statusParts.push('ឈ្មោះ: ' + detectedName);
-    }
-    if(bankNumber){
-      document.getElementById('custBankNumber').value = bankNumber;
-      statusParts.push('លេខគណនី: ' + bankNumber);
-    }
-    if(bankBrand){
-      detectedBankName = bankBrand;
-      statusParts.push('ធនាគារ: ' + bankBrand);
-    }
-
-    if(detectedName || bankNumber || bankBrand){
-      status.textContent = 'រកឃើញ — ' + statusParts.join(' | ');
-      renderUsernameChips();
-      renderAll();
-      saveState();
-    } else {
-      status.textContent = 'មិនអាចរកបានទេ សូមវាយដៃ ឬប្តូរភាសា (could not detect — try the other language toggle, or a clearer photo)';
-    }
-  } catch(err){
-    status.textContent = 'មានបញ្ហា សូមវាយឈ្មោះដៃ (scan failed, please type manually)';
-  } finally{
-    spinner.classList.add('hidden');
-    fileInput.disabled = false;
-  }
-}
-
-async function runOCR(file){
-  if(!file) return;
-
-  const status = document.getElementById('qrStatus');
-  const spinner = document.getElementById('qrSpinner');
-  const fileInput = document.getElementById('qrImage');
-  spinner.classList.remove('hidden');
-  fileInput.disabled = true;
   status.textContent = 'Enhancing image...';
 
   try{
@@ -1626,8 +1630,8 @@ function copyFull(id, el){
   });
 }
 
-function copyAllForExtension(btn){
-  const bundle = {
+function buildAutofillBundle(){
+  return {
     __autofill: true,
     username: pickedUsername || '',
     fullName: document.getElementById('custName').value.trim() || '',
@@ -1636,12 +1640,21 @@ function copyAllForExtension(btn){
       ? document.getElementById('outGmail').textContent : '',
     password: document.getElementById('passwordInput').value || ''
   };
+}
+
+function copyAndOpenRegister(btn){
+  const bundle = buildAutofillBundle();
+  const site = SITES[selectedSite];
+
   navigator.clipboard.writeText(JSON.stringify(bundle)).then(()=>{
     const original = btn.innerHTML;
-    btn.innerHTML = CHECK_SVG + ' Copied — open signup page';
+    btn.innerHTML = CHECK_SVG + ' Copied — opening...';
     btn.classList.add('copied');
     showToast('Copied for extension');
     setTimeout(()=>{ btn.innerHTML = original; btn.classList.remove('copied'); }, 2000);
+    window.open(site.registerLink, '_blank');
+  }).catch(()=>{
+    window.open(site.registerLink, '_blank');
   });
 }
 
